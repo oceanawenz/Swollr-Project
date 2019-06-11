@@ -1,4 +1,4 @@
 delete from exercises
-where id = $1;
+where exercise_id = $1;
 
 select * from exercises;

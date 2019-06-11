@@ -20,10 +20,11 @@ module.exports = {
 
     updateExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const { exercise_id } = req.params
+        const { id } = req.params
         const {sets, reps} = req.body
-        db.update_exercise([exercise_id, sets, reps])
-        .then(update_exercise => res.status(200).send(update_exercise))
+        // console.log(req.body)
+        db.update_exercise([id, sets, reps])
+        .then(newExercise => res.status(200).send(newExercise))
         .catch(err => {
             res.status(500).send(err)
         })
@@ -32,8 +33,8 @@ module.exports = {
 
     deleteExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const {exercise_id} = req.params;
-        db.delete_exercise([exercise_id])
+        const {id} = req.params;
+        db.delete_exercise([id])
         .then(delete_exercise => {
             res.status(200).send(delete_exercise)
         })

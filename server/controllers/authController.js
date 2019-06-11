@@ -6,7 +6,7 @@ module.exports = {
         const db = req.app.get('db');
         db.check_if_user_exists(user_name).then(foundUser => {
             if(foundUser.length) {
-                res.status(200).send('Email Already Exists')
+                res.status(200).send('User already exists!')
             } else {
                 const saltRounds = 12;
                 bcrypt.genSalt(saltRounds).then(salt => {

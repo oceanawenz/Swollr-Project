@@ -4,7 +4,13 @@ const massive = require('massive');
 const session = require('express-session');
 const app = express();
 app.use(express.json());
+
+
 const {userInfo, login, register, logout} = require('./controllers/authController');
+const {getAllExercises, postExercises, updateExercise, deleteExercise} = require('./controllers/exerciseController')
+
+
+
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 
 
@@ -32,11 +38,11 @@ app.post('/auth/register', register);
 app.post('/auth/login', login);
 
 //exercise endpoints
-app.get("/api/exercises");
-app.post("/api/exercises");
+app.get("/api/exercises", getAllExercises);
+app.post("/api/exercises", postExercises);
 //update
-app.put("/api/exercises/:id");
-app.delete("/api/exercises/:id")
+app.put("/api/exercises/:id", updateExercise);
+app.delete("/api/exercises/:id", deleteExercise);
 
 
 

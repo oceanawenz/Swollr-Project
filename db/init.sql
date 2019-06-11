@@ -26,8 +26,8 @@ SQL table for exercises
              exercise_name text not null,
              image_url text not null,
              instructions text not null,
-             reps integer not null,
              sets integer not null,
+             reps integer not null,
              user_id integer references users(user_id)
 );
 

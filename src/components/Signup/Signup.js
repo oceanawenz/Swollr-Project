@@ -5,12 +5,12 @@ import { saveUser } from '../../dux/reducer';
 
 import axios from 'axios';
 
-function SignupLink ({signup}) {
-    return <div>
-        <NavLink to="/builder">MyWorkouts</NavLink>
-        <button onClick={signup}>Signup</button>
-    </div>
-}
+// function SignupLink ({signup}) {
+//     return <div>
+//         <NavLink to="/builder">MyWorkouts</NavLink>
+//         <button onClick={signup}>Signup</button>
+//     </div>
+// }
 
 const mapStateToProps = (reduxState) => {
     return reduxState;
@@ -51,7 +51,7 @@ register = () => {
     axios.post('/api/register', {user_name, password, email}).then(res => {
         // this.setState({ user_name: " ", password: " "});
         this.props.saveUser(res.data);
-        console.log("recieved", res.data)
+        // console.log("recieved", res.data)
         // console.log("hit")
     }).catch(err => {
         console.log(err, "register not working")
@@ -65,7 +65,7 @@ register = () => {
         return <div className="signupForm">
             {/* if there is no user/user does not exist */}
             {!user ? (
-                <div>
+                <div className="inputFields">
                     <div>
                         username: {" "}
                         <input
@@ -109,8 +109,7 @@ register = () => {
                     </div>
                 </div>
                 ) : (
-                  //if there is a user, send them to the login page
-                  <p>Welcome User!</p>
+                  <p>Please Sign In!</p>
                  )}
         </div>  
     }

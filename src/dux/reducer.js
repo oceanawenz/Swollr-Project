@@ -1,8 +1,25 @@
+// import axios from 'axios';
+
+
 const initialState = {
-    user: null
+    user: null,
+    username: "",
+    email: "",
+    password: ""
+    
 }
 
+
 const SAVE_USER = "SAVE_USER";
+
+
+
+export function saveUser(user) {
+    return {
+        type: SAVE_USER,
+        payload: user
+    }
+}
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {

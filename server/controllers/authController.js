@@ -6,7 +6,7 @@ module.exports = {
         // console.log(req.body)
         const db = req.app.get('db');
         db.check_if_user_exists(email).then(foundUser => {
-            console.log(email, "this is the username from check if user exists")
+            console.log(user_name, "this is the user from check if user exists")
             if(foundUser.length) {
                 // console.log(foundUser)
                 res.status(200).send('User already exists!')
@@ -22,18 +22,19 @@ module.exports = {
                     })
                 })
             }
+        }).catch(err => {
+            console.log(err)
         })
     },
 
     login: (req, res, next) => {
-        const { user_name, password } = req.body;
+        const { email, password } = req.body;
         console.log(req.body);
         const db = req.app.get('db');
          //if the user attempts to login with username, but their username is not found
-        db.check_if_user_exists(user_name).then((userFound) => {
+        db.check_if_user_exists(email).then((userFound) => {
              if(!userFound[0]) {
-                 //send status of incorrect email/password
-                 res.status(200).send('Incorrect email/password')
+                 res.status(200).send('User already exists')
              } else {
                  bcrypt.compare(password, userFound[0].password).then(matchedPassword => {
                      //if there is a matched password
@@ -47,6 +48,8 @@ module.exports = {
                      }
                  })
              }
+        }).catch(err => {
+            console.log(err, 'login error')
         })
     },
 
@@ -56,7 +59,9 @@ module.exports = {
     },
 
     userInfo: (req, res, next) => {
+        console.log("user info hit")
         res.status(200).send(req.session.user)
+        
     }
 }
 

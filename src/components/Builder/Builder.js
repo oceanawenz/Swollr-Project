@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import { connect} from 'react-redux';
+import '../Builder/Builder.css'
 
 class Builder extends Component {
     
     render(){
         console.log(this.props)
-        return <div>Build your workout</div>
+        return <div className="builderPage">Build your workout</div>
     }
 
 }

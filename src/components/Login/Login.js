@@ -25,7 +25,7 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: "",
+            email: "",
             password:  ""
         }
     }
@@ -37,18 +37,10 @@ universalChangeHandler = (prop, value) => {
     })
 }
     
-    
-componentDidMount() {
-    axios.get('/api/user').then(res => {
-        console.log(res.data)
-        this.props.setUser(res.data)
-    })
-}   
-
-
+     
 login = () => {
-    const {username, password} = this.state
-    axios.post('/api/login', {username, password}).then(res => {
+    const {email, password} = this.state
+    axios.post('/api/login', {email, password}).then(res => {
         this.props.saveUser(res.data)
     }).catch(err => {
         console.log(err)
@@ -57,19 +49,20 @@ login = () => {
 
 
 render() {
-    const {username, password} = this.state;
-    // const {user} = this.props; 
+    const {email, password} = this.state;
+    const {user} = this.props; 
+    console.log(this.props)
     return <div>
             <div>
                 <div>
-                    username: {" "}
+                    email: {" "}
                     <input
                     onChange={e => 
                     this.universalChangeHandler(e.target.name, e.target.value)
                     }
-                    value={username}
-                    name="username"
-                    placeholder="Enter you username"
+                    value={email}
+                    name="email"
+                    placeholder="Enter your email"
                     />
                 </div>
                 <div>

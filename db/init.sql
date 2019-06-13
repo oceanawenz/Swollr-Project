@@ -4,7 +4,7 @@
 --Table Users
 create table users (
     user_id serial primary key,
-    user_name varchar(40) not null,
+    user_name varchar(40) not null unique,
     password text not null,
     email varchar(40) not null
 );

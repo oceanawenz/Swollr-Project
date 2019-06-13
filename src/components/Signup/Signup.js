@@ -5,12 +5,12 @@ import { saveUser } from '../../dux/reducer';
 
 import axios from 'axios';
 
-// function SignupLink ({signup}) {
-//     return <div>
-//         <NavLink to="/myworkouts">MyWorkouts</NavLink>
-//         <button onClick={signup}>Signup</button>
-//     </div>
-// }
+function SignupLink ({signup}) {
+    return <div>
+        <NavLink to="/builder">MyWorkouts</NavLink>
+        <button onClick={signup}>Signup</button>
+    </div>
+}
 
 const mapStateToProps = (reduxState) => {
     return reduxState;
@@ -31,7 +31,7 @@ class Signup extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: "",
+            user_name: "",
             password: "",
             email: ""
         }
@@ -44,28 +44,22 @@ universalChangeHandler = (prop, value) => {
 }
 
 
-componentDidMount() {
-    axios.get('/api/user').then(res => {
-        console.log(res.data)
-        this.props.setUser(res.data)
-    })
-}
 
 register = () => {
-    const {username, password, email} = this.state
+    const {user_name, password, email} = this.state
     console.log("hit")
-    axios.post('/api/register', {username, password, email}).then(res => {
-        this.setState({ username: " ", password: " "});
+    axios.post('/api/register', {user_name, password, email}).then(res => {
+        // this.setState({ user_name: " ", password: " "});
         this.props.saveUser(res.data);
-        // console.log(res.data)
-        console.log("hit")
+        console.log("recieved", res.data)
+        // console.log("hit")
     }).catch(err => {
         console.log(err, "register not working")
     })
 }
 
     render() {
-        const {username, email, password} = this.state;
+        const {user_name, email, password} = this.state;
         console.log(this.state)
         const {user} = this.props; 
         return <div className="signupForm">
@@ -78,8 +72,8 @@ register = () => {
                         onChange={e => 
                         this.universalChangeHandler(e.target.name, e.target.value)
                         }
-                        value={username}
-                        name="username"
+                        value={user_name}
+                        name="user_name"
                         placeholder="Enter a username"
                         />
                     </div>
@@ -115,14 +109,8 @@ register = () => {
                     </div>
                 </div>
                 ) : (
-                    //if there is a user, send them to the login page
-                   <div>
-                       <p>Already have an account?</p>
-                       <li>
-                         <button>Login</button>
-                       </li>
-                      
-                   </div>
+                  //if there is a user, send them to the login page
+                  <p>Welcome User!</p>
                  )}
         </div>  
     }

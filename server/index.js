@@ -32,10 +32,10 @@ app.use(session({
 }))
 
 //auth endpoints
-app.get('/auth/user', userInfo);
-app.get('/auth/logout', logout);
-app.post('/auth/register', register);
-app.post('/auth/login', login);
+app.get('/api/user', userInfo);
+app.get('/api/logout', logout);
+app.post('/api/register', register);
+app.post('/api/login', login);
 
 //exercise endpoints
 app.get("/api/exercises", getAllExercises);

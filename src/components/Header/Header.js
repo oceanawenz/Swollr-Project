@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import { saveUser } from '../../dux/reducer';
 import './Header.css';
-// import axios from 'axios';
-
 
 class Header extends Component {
     render() {

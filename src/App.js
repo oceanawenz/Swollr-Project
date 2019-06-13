@@ -5,7 +5,7 @@ import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import Builder from './components/Builder/Builder';
 import MyWorkouts from './components/MyWorkouts/MyWorkouts';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import './App.css';
 
 export default class App extends Component {

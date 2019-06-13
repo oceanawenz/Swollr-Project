@@ -3,9 +3,12 @@ const bcrypt = require('bcrypt');
 module.exports = {
     register: (req, res, next) => {
         const { user_name, password, email } = req.body;
+        // console.log(req.body)
         const db = req.app.get('db');
-        db.check_if_user_exists(user_name).then(foundUser => {
+        db.check_if_user_exists(email).then(foundUser => {
+            console.log(email, "this is the username from check if user exists")
             if(foundUser.length) {
+                // console.log(foundUser)
                 res.status(200).send('User already exists!')
             } else {
                 const saltRounds = 12;
@@ -24,6 +27,7 @@ module.exports = {
 
     login: (req, res, next) => {
         const { user_name, password } = req.body;
+        console.log(req.body);
         const db = req.app.get('db');
          //if the user attempts to login with username, but their username is not found
         db.check_if_user_exists(user_name).then((userFound) => {

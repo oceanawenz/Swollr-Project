@@ -8,7 +8,7 @@ module.exports = {
         })
     },
 
-    postExercises: (req, res, next) => {
+    postExercise: (req, res, next) => {
         const db = req.app.get('db');
         const { exercise_name, img_url, instructions, sets, reps } = req.body;
         db.post_exercises([exercise_name, img_url, instructions, sets, reps])

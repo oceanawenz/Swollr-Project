@@ -5,12 +5,7 @@ import { saveUser } from '../../dux/reducer';
 
 import axios from 'axios';
 
-// function SignupLink ({signup}) {
-//     return <div>
-//         <NavLink to="/builder">MyWorkouts</NavLink>
-//         <button onClick={signup}>Signup</button>
-//     </div>
-// }
+
 
 const mapStateToProps = (reduxState) => {
     return reduxState;
@@ -109,7 +104,15 @@ register = () => {
                     </div>
                 </div>
                 ) : (
-                  <p>Please Sign In!</p>
+                    <ul>
+                    <li>
+                        <NavLink to= '/login'>Login</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/signup'>Signup</NavLink>
+                    </li>
+                </ul>
+                 
                  )}
         </div>  
     }

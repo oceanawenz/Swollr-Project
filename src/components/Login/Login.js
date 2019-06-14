@@ -6,7 +6,6 @@ import axios from 'axios';
 
 
 
-
 const mapStateToProps = (reduxState) => {
     return reduxState;
 }
@@ -50,7 +49,6 @@ login = () => {
 
 render() {
     const {email, password} = this.state;
-    const {user} = this.props; 
     console.log(this.props)
     return <div>
             <div>
@@ -78,7 +76,7 @@ render() {
                     />
                 </div>
                 <div>
-                    <NavLink to="/builder">
+                    <NavLink to="/myworkouts">
                         <button onClick={this.login}>Login</button>
                     </NavLink>
                     

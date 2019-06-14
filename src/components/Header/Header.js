@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.css';
 
+
+// function MainLinks({logout}) {
+//     return <div>
+//         <NavLink exact to='/'>Home</NavLink>
+//         <NavLink to='/builder'>Builder</NavLink>
+//         <NavLink to='/myworkouts'>MyWorkouts</NavLink>
+//         <button onClick={logout}>Logout</button>
+//     </div>
+// }
+
 class Header extends Component {
     render() {
         return (
@@ -17,6 +27,7 @@ class Header extends Component {
                     </li>
                 </ul>
             </div> 
+            {/* <MainLinks logout={this.logout}/> */}
         </header>
         )
     }

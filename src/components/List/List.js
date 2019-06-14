@@ -7,14 +7,14 @@ class List extends Component{
     constructor(props){
         super(props)
         this.state = {
-            listName: "",
+            listName: ""
             
         }
     }
     render() {
         return <div className="listContainer">
             <h1>List</h1>   
-            <input type="text" placeholder="Enter Your Workout Name"/>
+            <input type="text" placeholder="Enter Workout Name"/>
             <button>Save</button>
             <button>Delete/Reset</button>
         </div>

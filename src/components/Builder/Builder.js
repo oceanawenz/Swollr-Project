@@ -33,6 +33,7 @@ componentDidMount() {
 
 
     render(){
+        const {sets} = this.state
         const mappedExercises = this.state.exercises.map(exercise => {
             return (
                 <div key={exercise.exercise_id}>
@@ -46,13 +47,20 @@ componentDidMount() {
         })
             return <div className='excerciseContainer'>
             <h3>Exercises</h3>
-            {mappedExercises}
-            
-            <button>Add to list</button>
-            <List/>
-            
+                {mappedExercises}
+                <button>Add to list</button> 
+                <div>
+                    {sets}
+                    <input type="button" value="-" datafield="quantity"/>
+                    <input type="numbers" step="1" max="" value="1"/>
+                    <input type="button" value="+" datafield="quantity" />
+                </div>
+                
+                <div>
+                <List/>
+                </div>
             </div>
-
+            
         
     }
 

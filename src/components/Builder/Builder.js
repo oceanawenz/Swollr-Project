@@ -13,10 +13,19 @@ class Builder extends Component {
         this.state = {
             exercises: [],
             reps: 0,
-            sets: 0
+            sets: 0,
+            prevState: 0
         }
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.addToSet = this.addToSet.bind(this)
     }
+
+
+addToSet() {
+    this.setState({
+        sets: this.state.sets + 1
+    }) 
+}
 
 
 componentDidMount() {
@@ -33,7 +42,6 @@ componentDidMount() {
 
 
     render(){
-        const {sets} = this.state
         const mappedExercises = this.state.exercises.map(exercise => {
             return (
                 <div key={exercise.exercise_id}>
@@ -50,10 +58,8 @@ componentDidMount() {
                 {mappedExercises}
                 <button>Add to list</button> 
                 <div>
-                    {sets}
-                    <input type="button" value="-" datafield="quantity"/>
-                    <input type="numbers" step="1" max="" value="1"/>
-                    <input type="button" value="+" datafield="quantity" />
+                    <h1>Sets : {this.state.sets}</h1>
+                    <button onClick={this.addToSet}>+</button>
                 </div>
                 
                 <div>

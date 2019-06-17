@@ -53,7 +53,7 @@ render() {
     return <div>
             <div>
                 <div>
-                    email: {" "}
+                    Email: {" "}
                     <input
                     onChange={e => 
                     this.universalChangeHandler(e.target.name, e.target.value)
@@ -64,7 +64,7 @@ render() {
                     />
                 </div>
                 <div>
-                    password: {" "}
+                    Password: {" "}
                     <input
                     onChange={e => 
                     this.universalChangeHandler(e.target.name, e.target.value)

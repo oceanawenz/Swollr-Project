@@ -7,7 +7,7 @@ export default class MyWorkouts extends Component {
 
     render() {
         return <div>
-            <h1>MyWorkouts</h1>
+            <h4>MyWorkouts</h4>
         <NavLink to='/builder'>
             <button>
                 Add New Workout

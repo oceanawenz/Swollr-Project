@@ -27,6 +27,7 @@ module.exports = {
         .then(newExercise => res.status(200).send(newExercise))
         .catch(err => {
             res.status(500).send(err)
+            console.log(err, "update not working")
         })
 
     },

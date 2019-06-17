@@ -13,12 +13,12 @@ class Builder extends Component {
         super(props)
         this.state = {
             exercises: [],
-            // counter: 0,
             reps: 0,
-            sets: 0
+            sets: 0,
+            inExercises: false
         }
         this.componentDidMount = this.componentDidMount.bind(this);
-        // this.updateExercise = this.updateExercise.bind(this);
+        this.updateExercise = this.updateExercise.bind(this);
         // this.increment = this.increment.bind(this);
         // this.decrecement = this.decrecement.bind(this);
         this.add = this.add.bind(this)
@@ -65,20 +65,6 @@ subtractReps() {
 }
 
 
-
-// increment() {
-//     this.setState({
-//         counter: this.state.counter + 1
-//     })
-// }
-
-
-// decrecement() {
-//     if(this.state.reps > 0) {
-//         this.setState(prevState => ({reps: prevState.reps - 1}))
-//      }
-// }
-
 componentDidMount() {
     axios.get(`/api/exercises`).then(exercises => {
         this.setState({
@@ -87,34 +73,34 @@ componentDidMount() {
     })
 }
 
-// updateExercise(id, sets, reps) {
-//     axios.put(`/api/exercise/${id}`, {sets, reps}).then(exercise => {
-//         this.setState({
-//             exercises : exercise.data
-//         }) 
-//     }) 
-// }
+updateExercise(id, sets, reps) {
+    axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
+        this.setState({
+            exercises : exercise.data
+        }) 
+    }) 
+}
 
     render(){
-        // const {sets, reps} = this.state;
         const mappedExercises = this.state.exercises.map(exercise => {
-            console.log(exercise)
+            // console.log(exercise)
+        const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             return (
-                <div key={exercise.exercise_id}>
-                    <div>{exercise.exercise_name}</div>
+                <div key={exercise_id}>
+                    <div>{exercise_name}</div>
                     <img src={`${exercise.image_url}`} alt=""/>
-                    <div>{exercise.instructions}</div>
+                    <div>{instructions}</div>
                     <div>
-                        <h1>Sets {exercise.sets}</h1>
-                        <button>+</button>
+                        <h4>Sets {sets}</h4>
+                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps)}>+</button>
                         <button>-</button>
                     </div>
                     <div>
-                        <h1>Reps {exercise.reps}</h1>
+                        <h4>Reps {reps}</h4>
                         <button>+</button>
                         <button>-</button>
                     </div>
-   
+                    <button>Add to list</button>
                 </div>
             )
         })
@@ -122,10 +108,10 @@ componentDidMount() {
             <div className='excerciseContainer'>
             <h3>Exercises</h3>
                 {mappedExercises}
-                <button>Add to list</button>
-                <div>
+                
+            <div>
                 <List/>
-                </div>
+            </div>
             </div>
             
         )
@@ -155,11 +141,7 @@ export default invokedConnect(Builder)
 
 
 
-                    // {/* <div>
-                    //     <button onClick={this.add}>+</button>
-                    //     {/* <div>{exercise.sets}</div> */}
-                    //     {/* <button>-</button> */}
-                    // {/* </div>
+                   
                     // <div> */}
                     //     {/* <button>+</button> */}
                     //     {/* <div>{exercise.reps}</div> */}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveUser } from '../../dux/reducer';
-
+import './Signup.css';
 import axios from 'axios';
 
 
@@ -60,47 +60,49 @@ register = () => {
         return <div className="signupForm">
             {/* if there is no user/user does not exist */}
             {!user ? (
-                <div className="inputFields">
-                    <div>
-                        username: {" "}
-                        <input
-                        onChange={e => 
-                        this.universalChangeHandler(e.target.name, e.target.value)
-                        }
-                        value={user_name}
-                        name="user_name"
-                        placeholder="Enter a username"
-                        />
-                    </div>
-                    <div>
-                        email: {" "}
-                        <input
-                        onChange={e => 
-                        this.universalChangeHandler(e.target.name, e.target.value)
-                        }
-                        value={email}
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        />
-                    </div>
-                    <div>
-                        password: {" "}
-                        <input
-                        onChange={e => 
-                        this.universalChangeHandler(e.target.name, e.target.value)
-                        }
-                        type="password"
-                        value={password}
-                        name="password"
-                        placeholder="Enter a password"
-                        />
-                    </div>
-                    <div>
-                        <NavLink to="/builder">
-                        <button onClick={this.register}>Signup</button>
-                        </NavLink>
-                        
+                <div className="bgForm">
+                    <div className="inputFields">
+                        <div className="inputField">
+                            Username: {" "}
+                            <input
+                            onChange={e => 
+                            this.universalChangeHandler(e.target.name, e.target.value)
+                            }
+                            value={user_name}
+                            name="user_name"
+                            // placeholder="Enter a username"
+                            />
+                        </div>
+                        <div className="inputField">
+                            Email: {" "}
+                            <input
+                            onChange={e => 
+                            this.universalChangeHandler(e.target.name, e.target.value)
+                            }
+                            value={email}
+                            type="email"
+                            name="email"
+                            // placeholder="Enter your email"
+                            />
+                        </div>
+                        <div className="inputField">
+                            Password: {" "}
+                            <input
+                            onChange={e => 
+                            this.universalChangeHandler(e.target.name, e.target.value)
+                            }
+                            type="password"
+                            value={password}
+                            name="password"
+                            // placeholder="Enter a password"
+                            />
+                        </div>
+                        <div>
+                            <NavLink to="/builder">
+                            <button classnme="onWhite" onClick={this.register}>Signup</button>
+                            </NavLink>
+                            
+                        </div>
                     </div>
                 </div>
                 ) : (

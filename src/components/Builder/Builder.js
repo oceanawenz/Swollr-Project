@@ -19,50 +19,7 @@ class Builder extends Component {
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.updateExercise = this.updateExercise.bind(this);
-        // this.increment = this.increment.bind(this);
-        // this.decrecement = this.decrecement.bind(this);
-        this.add = this.add.bind(this)
-        this.addToReps = this.addToReps.bind(this)
-        this.subtract = this.subtract.bind(this)
-        this.subtractReps = this.subtractReps.bind(this)
     }
-
-
-add() {
-    this.setState({
-        sets: this.state.sets + 1
-    }) 
-}
-
-subtract() {
-    if(this.state.sets === 0) {
-        this.setState({
-            sets: 0
-        })
-    } else {
-        this.setState({
-            sets: this.state.sets - 1
-        })
-    }
-}
-
-addToReps() {
-    this.setState({
-        reps: this.state.reps + 1
-    }) 
-}
-
-subtractReps() {
-    if(this.state.reps === 0) {
-        this.setState({
-            sets: 0
-        })
-    } else {
-        this.setState({
-            sets: this.state.reps - 1
-        })
-    }
-}
 
 
 componentDidMount() {
@@ -75,6 +32,7 @@ componentDidMount() {
 
 updateExercise(id, sets, reps) {
     axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
+        console.log(exercise.data)
         this.setState({
             exercises : exercise.data
         }) 
@@ -92,13 +50,13 @@ updateExercise(id, sets, reps) {
                     <div>{instructions}</div>
                     <div>
                         <h4>Sets {sets}</h4>
-                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps)}>+</button>
-                        <button>-</button>
+                        <button onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}>+</button>
+                        <button onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}>-</button>
                     </div>
                     <div>
                         <h4>Reps {reps}</h4>
-                        <button>+</button>
-                        <button>-</button>
+                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}>+</button>
+                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}>-</button>
                     </div>
                     <button>Add to list</button>
                 </div>
@@ -107,7 +65,7 @@ updateExercise(id, sets, reps) {
             return (
             <div className='excerciseContainer'>
             <h3>Exercises</h3>
-                {mappedExercises}
+            {mappedExercises}
                 
             <div>
                 <List/>
@@ -142,8 +100,44 @@ export default invokedConnect(Builder)
 
 
                    
-                    // <div> */}
-                    //     {/* <button>+</button> */}
-                    //     {/* <div>{exercise.reps}</div> */}
-                    //     {/* <button>-</button> */}
-                    // {/* </div> */} 
+ // <div> */}
+//     {/* <button>+</button> */}
+//     {/* <div>{exercise.reps}</div> */}
+//     {/* <button>-</button> */}
+    // {/* </div> */} 
+
+// add() {
+//     this.setState({
+//         sets: this.state.sets + 1
+//     }) 
+// }
+
+// subtract() {
+//     if(this.state.sets === 0) {
+//         this.setState({
+//             sets: 0
+//         })
+//     } else {
+//         this.setState({
+//             sets: this.state.sets - 1
+//         })
+//     }
+// }
+
+// addToReps() {
+//     this.setState({
+//         reps: this.state.reps + 1
+//     }) 
+// }
+
+// subtractReps() {
+//     if(this.state.reps === 0) {
+//         this.setState({
+//             sets: 0
+//         })
+//     } else {
+//         this.setState({
+//             sets: this.state.reps - 1
+//         })
+//     }
+// }

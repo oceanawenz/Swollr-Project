@@ -8,13 +8,26 @@ class List extends Component{
         super(props)
         this.state = {
             listName: ""
-            
         }
     }
+
+handleChange(e) {
+    this.setState({
+        listName: e.target.value
+    })
+}
+
     render() {
+        const{listName} = this.state
         return <div className="listContainer">
             <h1>List</h1>   
-            <input type="text" placeholder="Enter Workout Name"/>
+            <label>
+                {listName}
+            </label>
+            <input type="text" 
+            value={this.state.listName} onChange={this.handleChange}
+            placeholder="Enter Workout Name"
+            />
             <button>Save</button>
             <button>Delete/Reset</button>
         </div>

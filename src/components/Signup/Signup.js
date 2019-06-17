@@ -104,14 +104,7 @@ register = () => {
                     </div>
                 </div>
                 ) : (
-                    <ul>
-                    <li>
-                        <NavLink to= '/login'>Login</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/signup'>Signup</NavLink>
-                    </li>
-                </ul>
+                  <h1>Hello User!</h1>
                  
                  )}
         </div>  

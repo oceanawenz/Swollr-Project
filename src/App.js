@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header/>
+        <Header/>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/signup' component={Signup}/>

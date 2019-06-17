@@ -1,10 +1,58 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
+import heroImg from '../../media/hero-img.jpg';
+import './Home.css';
 
 export default class Home extends Component {
     render() {
-        return <div>
-            <h1>How it works</h1>
-        </div>
+        return (
+            <div>
+                <section className="heroBG">
+                    <div className="container">
+                        <div className="heroContent">
+                            <h1>WORKOUT PLANS MADE EASY</h1>
+                            <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p>
+                            <div className="spacer"></div>
+                            <NavLink to='/signup'>
+                                <button>Sign Up</button>
+                            </NavLink>
+                            
+                        </div>
+                        {/* <img src={heroImg}/> */}
+                    </div>
+                </section>
+                <div className='container'>
+                    <h3 className="sectionTitle">How It Works</h3>
+                    <div className="oneThird">
+                        <img className="infoIcon" src={heroImg}/>
+                        <h4>Easy to Customize</h4>
+                        <div className="spacer ten"></div>
+                        <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p>
+                    </div>
+                    <div className="oneThird">
+                        <img className="infoIcon" src={heroImg}/>
+                        <h4>Easy to Customize</h4>
+                        <div className="spacer ten"></div>
+                        <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p>
+                    </div>
+                    <div className="oneThird">
+                        <img className="infoIcon" src={heroImg}/>
+                        <h4>Easy to Customize</h4>
+                        <div className="spacer ten"></div>
+                        <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p>
+                    </div>
+                </div>
+                <div className='container'>
+                    <div className="lastContainer">
+                        <h3>I like to eat green eggs and ham</h3>
+                        <div className="spacer ten"></div>
+                        <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p> 
+                    </div>
+                    <img className="final" src={heroImg}/>
+                </div>
+
+            </div>
+         )
     }
 }
 

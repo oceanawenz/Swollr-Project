@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect} from 'react-redux';
-// import { saveUser } from '../../dux/reducer';
+import { saveUser } from '../../dux/reducer';
 import '../Builder/Builder.css'
 import List from '../List/List';
 import axios from 'axios';
@@ -13,11 +13,14 @@ class Builder extends Component {
         super(props)
         this.state = {
             exercises: [],
+            // counter: 0,
             reps: 0,
             sets: 0
         }
-        this.componentDidMount = this.componentDidMount.bind(this)
-        this.updateExercise = this.updateExercise.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this);
+        // this.updateExercise = this.updateExercise.bind(this);
+        // this.increment = this.increment.bind(this);
+        // this.decrecement = this.decrecement.bind(this);
         this.add = this.add.bind(this)
         this.addToReps = this.addToReps.bind(this)
         this.subtract = this.subtract.bind(this)
@@ -32,14 +35,14 @@ add() {
 }
 
 subtract() {
-    if(this.state.sets > 0) {
-        this.setState(prevState => ({sets: prevState.sets - 1}))
-    }
-}
-
-subtractReps() {
-    if(this.state.reps > 0) {
-        this.setState(prevState => ({reps: prevState.reps - 1}))
+    if(this.state.sets === 0) {
+        this.setState({
+            sets: 0
+        })
+    } else {
+        this.setState({
+            sets: this.state.sets - 1
+        })
     }
 }
 
@@ -49,8 +52,32 @@ addToReps() {
     }) 
 }
 
+subtractReps() {
+    if(this.state.reps === 0) {
+        this.setState({
+            sets: 0
+        })
+    } else {
+        this.setState({
+            sets: this.state.reps - 1
+        })
+    }
+}
 
 
+
+// increment() {
+//     this.setState({
+//         counter: this.state.counter + 1
+//     })
+// }
+
+
+// decrecement() {
+//     if(this.state.reps > 0) {
+//         this.setState(prevState => ({reps: prevState.reps - 1}))
+//      }
+// }
 
 componentDidMount() {
     axios.get(`/api/exercises`).then(exercises => {
@@ -60,59 +87,48 @@ componentDidMount() {
     })
 }
 
-updateExercise(id, sets, reps) {
-    axios.put(`/api/exercise/${id}`, {sets, reps}).then(exercise => {
-        this.setState({
-            exercises : exercise.data
-        })
-    })
-}
+// updateExercise(id, sets, reps) {
+//     axios.put(`/api/exercise/${id}`, {sets, reps}).then(exercise => {
+//         this.setState({
+//             exercises : exercise.data
+//         }) 
+//     }) 
+// }
 
     render(){
+        // const {sets, reps} = this.state;
         const mappedExercises = this.state.exercises.map(exercise => {
+            console.log(exercise)
             return (
                 <div key={exercise.exercise_id}>
                     <div>{exercise.exercise_name}</div>
-                    {/* <div>{exercise.img_url}</div> */}
+                    <img src={`${exercise.image_url}`} alt=""/>
                     <div>{exercise.instructions}</div>
-                    <div>{exercise.sets}</div>
-                    <div>{exercise.reps}</div>
-
-                    {/* <div>
-                        <button onClick={this.add}>+</button>
-                        <div>{exercise.sets}</div>
-                        <button onClick={this.subtract}>-</button>
+                    <div>
+                        <h1>Sets {exercise.sets}</h1>
+                        <button>+</button>
+                        <button>-</button>
                     </div>
                     <div>
-                        <button onClick={this.addToReps}>+</button>
-                        <div>{exercise.reps}</div>
-                        <button onClick={this.subtractReps}>-</button>
-                    </div> */}
-                    
+                        <h1>Reps {exercise.reps}</h1>
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
+   
                 </div>
             )
         })
-            return <div className='excerciseContainer'>
+            return (
+            <div className='excerciseContainer'>
             <h3>Exercises</h3>
                 {mappedExercises}
-                <button>Add to list</button> 
-                    <div>
-                        <h1>Sets {this.state.sets}</h1>
-                        <button onClick={this.add}>+</button>
-                        <button onClick={this.subtract}>-</button>
-                    </div>
-                    <div>
-                        <h1>Reps {this.state.reps}</h1>
-                        <button onClick={this.addToReps}>+</button>
-                        <button onClick={this.subtractReps}>-</button>
-                    </div>
-                
+                <button>Add to list</button>
                 <div>
                 <List/>
                 </div>
             </div>
             
-        
+        )
     }
 
 }
@@ -124,13 +140,28 @@ const mapStateToProps = (reduxState) => {
     return reduxState;
 }
 
-// const mapDispatchToProps = {
-//     saveUser
-// }
+const mapDispatchToProps = {
+    saveUser
+}
 
 const invokedConnect = connect(
-    mapStateToProps
-    // mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )
 
 export default invokedConnect(Builder)
+
+
+
+
+
+                    // {/* <div>
+                    //     <button onClick={this.add}>+</button>
+                    //     {/* <div>{exercise.sets}</div> */}
+                    //     {/* <button>-</button> */}
+                    // {/* </div>
+                    // <div> */}
+                    //     {/* <button>+</button> */}
+                    //     {/* <div>{exercise.reps}</div> */}
+                    //     {/* <button>-</button> */}
+                    // {/* </div> */} 

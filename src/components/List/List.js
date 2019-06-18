@@ -4,7 +4,8 @@ import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import { addUserList } from '../../dux/exerciseReducer';
-import {addWorkoutName} from '../../dux/exerciseReducer';
+import { addWorkoutName } from '../../dux/exerciseReducer';
+import { removeFromUserList } from '../../dux/exerciseReducer';
 import './List.scss';
 import axios from 'axios';
 
@@ -23,14 +24,15 @@ class List extends Component{
 
 postExcercise(exercise){
     axios.post(`/api/exercise`, {exercise}).then(exercise => {
-        console.log(exercise.data)
+        // console.log(exercise.data)
        this.props.addExerciseList(exercise.data)
        })
 }
 
 deleteExercise(id) {
-    axios.delete(`api/exercises/${id}`).then(exercise => {
-       this.props.addUserList(exercise.data)
+    axios.delete(`/api/exercises/${id}`, {id}).then(exercise => {
+        console.log(exercise.data)
+       this.props.removeFromUserList(exercise.data)
     })
 }
 
@@ -88,7 +90,8 @@ const mapDispatchToProps = {
     saveUser,
     addExerciseList,
     addUserList,
-    addWorkoutName
+    addWorkoutName,
+    removeFromUserList
 }
 
 const invokedConnect = connect(

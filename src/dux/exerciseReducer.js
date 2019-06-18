@@ -1,6 +1,6 @@
 
 const initialState = {
-allExercises: [],
+  allExercises: [],
   userlist: []
 }
 
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
         case EXERCISE_LIST:
             return {...state, allExercises: action.payload}
         case USER_LIST:
-            return {...state, userlist: action.payload}
+            return {...state, userlist: [...state.userlist, action.payload]}
     default:
         return state;     
     }

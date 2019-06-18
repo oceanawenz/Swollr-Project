@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
+import { addUserList } from '../../dux/exerciseReducer';
 import '../Builder/Builder.scss'
 import List from '../List/List';
 import axios from 'axios';
@@ -15,8 +16,8 @@ class Builder extends Component {
         this.state = {
             exercises: [],
             // list: [],
-            reps: 0,
-            sets: 0
+            // reps: 0,
+            // sets: 0
         }
         this.updateExercise = this.updateExercise.bind(this);
     
@@ -24,12 +25,11 @@ class Builder extends Component {
     }
 
 addToExercises =(item)  => {
-    const {exercises} = this.state;
-    var copy = [...exercises]
-    copy.push(item)
-    this.setState({
-        exercises: copy
-    })
+    // const {userList} = this.state;
+    // var copy = [...exercises]
+    // copy.push(item)
+    console.log(this.props)
+    this.props.addUserList(item)
 }
 
 
@@ -44,14 +44,10 @@ addToExercises =(item)  => {
 
 updateExercise(id, sets, reps) {
     axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
-        // console.log(exercise.data)
-        this.setState({
-            exercises : exercise.data
-        }) 
+        console.log(exercise.data)
+       this.props.addExerciseList(exercise.data)
     }) 
 }
-
-
 
     render(){
         console.log(this.props);
@@ -92,7 +88,6 @@ updateExercise(id, sets, reps) {
             
         )
     }
-
 }
 
 
@@ -104,7 +99,8 @@ const mapStateToProps = (reduxState) => {
 
 const mapDispatchToProps = {
     saveUser,
-    addExerciseList
+    addExerciseList,
+    addUserList
 }
 
 const invokedConnect = connect(
@@ -119,44 +115,3 @@ export default invokedConnect(Builder)
 
 
                    
- // <div> */}
-//     {/* <button>+</button> */}
-//     {/* <div>{exercise.reps}</div> */}
-//     {/* <button>-</button> */}
-    // {/* </div> */} 
-
-// add() {
-//     this.setState({
-//         sets: this.state.sets + 1
-//     }) 
-// }
-
-// subtract() {
-//     if(this.state.sets === 0) {
-//         this.setState({
-//             sets: 0
-//         })
-//     } else {
-//         this.setState({
-//             sets: this.state.sets - 1
-//         })
-//     }
-// }
-
-// addToReps() {
-//     this.setState({
-//         reps: this.state.reps + 1
-//     }) 
-// }
-
-// subtractReps() {
-//     if(this.state.reps === 0) {
-//         this.setState({
-//             sets: 0
-//         })
-//     } else {
-//         this.setState({
-//             sets: this.state.reps - 1
-//         })
-//     }
-// }

@@ -4,6 +4,7 @@ import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import { addUserList } from '../../dux/exerciseReducer';
+import {addWorkoutName} from '../../dux/exerciseReducer';
 import './List.scss';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ class List extends Component{
         super(props)
         this.state = {
             list: [],
-            listName: ""
+            workoutName: ""
         }
         this.postExercise = this.postExcercise.bind(this)
     }
@@ -27,14 +28,21 @@ postExcercise(exercise){
        })
 }
 
+deleteExercise(id) {
+    axios.delete(`api/exercises/${id}`).then(exercise => {
+       this.props.addUserList(exercise.data)
+    })
+}
 
-handleChange(e) {
+handleChange(value) {
     this.setState({
-        listName: e.target.value
+        workoutName: value
     })
 }
 
 render() {
+        const {workoutName} = this.state
+        // console.log(this.props)
         console.log(this.props.exercises.userlist);
         const mappedList = this.props.exercises.userlist.map((exercise, index) => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
@@ -44,26 +52,29 @@ render() {
                     <div>{instructions}</div>
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
+                    <div>
+                        <button onClick={() => this.deleteExercise(index)}>Delete</button>
+                    </div>
                 </div>                        
             )
         }) 
 
         return ( <div className="listContainer">
-            <h1>List</h1>
-            {/* <div>{mappedList}</div>   
-            <label>
-                {listName}
-            </label> */}
-            <input type="text" 
-            value={this.state.listName} onChange={this.handleChange}
-            placeholder="Enter Workout Name"
+            <h1>List</h1> 
+            {/* <label>
+                {wokoutName}
+            </label>  */}
+            {/* <textarea value={workoutName} /> */}
+            <input onChange={e => this.handleChange(e.target.value)}
+                value={workoutName}
+                name="workoutName"
+                placeholder="Name Your Workout"
             />
-            {mappedList}
-
+            <div> {mappedList}</div>
+            
             <NavLink to='/myworkouts'>
                 <button>Save</button>
             </NavLink>
-            <button>Delete/Reset</button>
         </div>
         )
     }
@@ -76,7 +87,8 @@ const mapStateToProps = (reduxState) => {
 const mapDispatchToProps = {
     saveUser,
     addExerciseList,
-    addUserList
+    addUserList,
+    addWorkoutName
 }
 
 const invokedConnect = connect(

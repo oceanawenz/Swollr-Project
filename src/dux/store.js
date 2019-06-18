@@ -4,7 +4,8 @@ import reducer from './reducer';
 
 const rootReducer = combineReducers({
     user: reducer,
-    exercises: exerciseReducer
+    exercises: exerciseReducer,
+    workoutName : exerciseReducer
 })
 
 

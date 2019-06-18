@@ -33,14 +33,14 @@ addToExercises =(item)  => {
 }
 
 
-// componentWillMount() {
-//     axios.get(`/api/exercises`).then(exercises => {
-//         console.log(exercises);
-//         this.setState({
-//             exercises: exercises.data
-//         })
-//     })
-// }
+componentDidMount() {
+    axios.get(`/api/exercises`).then(exercises => {
+        console.log(exercises);
+        this.setState({
+            exercises: exercises.data
+        })
+    })
+}
 
 updateExercise(id, sets, reps) {
     axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {

@@ -10,8 +10,8 @@ module.exports = {
 
     postExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const { exercise_name, img_url, instructions, sets, reps } = req.body;
-        db.post_exercises([exercise_name, img_url, instructions, sets, reps])
+        const { exercise_id, exercise_name, img_url, instructions, sets, reps } = req.body;
+        db.post_exercises([exercise_id, exercise_name, img_url, instructions, sets, reps])
         .then(post_exercises => res.status(200).send(post_exercises))
         .catch(err => {
             res.status(500).send(err)

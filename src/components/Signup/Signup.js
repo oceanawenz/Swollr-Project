@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveUser } from '../../dux/reducer';
-import './Signup.css';
+import './Signup.scss';
 import axios from 'axios';
 
 

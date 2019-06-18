@@ -1,4 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import exerciseReducer from './exerciseReducer';
 import reducer from './reducer';
 
-export default createStore(reducer);
+const rootReducer = combineReducers({
+    user: reducer,
+    exercises: exerciseReducer
+})
+
+
+export default createStore(rootReducer);

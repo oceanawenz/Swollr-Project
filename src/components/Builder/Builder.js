@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
-import '../Builder/Builder.css'
+import { addExerciseList } from '../../dux/exerciseReducer';
+import '../Builder/Builder.scss'
 import List from '../List/List';
 import axios from 'axios';
 
@@ -13,36 +14,50 @@ class Builder extends Component {
         super(props)
         this.state = {
             exercises: [],
+            // list: [],
             reps: 0,
-            sets: 0,
-            inExercises: false
+            sets: 0
         }
-        this.componentDidMount = this.componentDidMount.bind(this);
         this.updateExercise = this.updateExercise.bind(this);
+    
+       
     }
 
-
-componentDidMount() {
-    axios.get(`/api/exercises`).then(exercises => {
-        this.setState({
-            exercises: exercises.data
-        })
+addToExercises =(item)  => {
+    const {exercises} = this.state;
+    var copy = [...exercises]
+    copy.push(item)
+    this.setState({
+        exercises: copy
     })
 }
 
+
+// componentWillMount() {
+//     axios.get(`/api/exercises`).then(exercises => {
+//         console.log(exercises);
+//         this.setState({
+//             exercises: exercises.data
+//         })
+//     })
+// }
+
 updateExercise(id, sets, reps) {
     axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
-        console.log(exercise.data)
+        // console.log(exercise.data)
         this.setState({
             exercises : exercise.data
         }) 
     }) 
 }
 
+
+
     render(){
-        const mappedExercises = this.state.exercises.map(exercise => {
-            // console.log(exercise)
-        const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
+        console.log(this.props);
+        console.log(this.state);
+        const mappedExercises = this.props.exercises.allExercises.map(exercise => {
+            const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             return (
                 <div key={exercise_id}>
                     <div>{exercise_name}</div>
@@ -58,15 +73,18 @@ updateExercise(id, sets, reps) {
                         <button onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}>+</button>
                         <button onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}>-</button>
                     </div>
-                    <button>Add to list</button>
+                    <div>
+                    <button onClick={() => this.addToExercises({exercise_id, exercise_name, instructions, sets, reps})}>Add to list</button>
+                    </div>
                 </div>
             )
         })
+    // console.log(mappedExercises)
             return (
             <div className='excerciseContainer'>
             <h3>Exercises</h3>
+            
             {mappedExercises}
-                
             <div>
                 <List/>
             </div>
@@ -85,7 +103,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-    saveUser
+    saveUser,
+    addExerciseList
 }
 
 const invokedConnect = connect(

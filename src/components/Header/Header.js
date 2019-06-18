@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import { saveUser } from '../../dux/reducer';
-import './Header.css';
+import './Header.scss';
 // import axios from 'axios';
 
 

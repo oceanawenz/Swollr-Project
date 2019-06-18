@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import heroImg from '../../media/hero-img.jpg';
-import './Home.css';
+import './Home.scss';
 
 export default class Home extends Component {
     render() {

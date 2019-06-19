@@ -1,3 +1,70 @@
-.builderPage {
-    background-color: pink;
+.pageBg {
+    background: rgb(58,161,126);
+    background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%);
+    margin-top: -100px;
+    padding: 100px 20px 50px 20px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+    align-content: stretch;
+
+
+}
+
+.listContainer {
+    width: 300px;
+}
+
+.exerciseContainer {
+    flex-grow: 1;
+    margin-left: 30px;
+}
+
+.exerciseCard {
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+
+}
+
+.exInfo {
+    width: 400px;
+    margin-right: 10px;
+}
+
+.exerciseImg {
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+}
+.countContainer {
+    margin-right: 10px;
+}
+
+.plusBtn {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+}
+
+.minusBtn {
+    width: 30px;
+    height: 30px;
+    margin-left: 6px;
+}
+
+.addExBtn {
+    order: -1;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
 }

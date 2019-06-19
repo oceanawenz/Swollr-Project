@@ -6,7 +6,8 @@ import Login from './components/Login/Login';
 import Builder from './components/Builder/Builder';
 import MyWorkouts from './components/MyWorkouts/MyWorkouts';
 import { Switch, Route} from 'react-router-dom';
-import './App.css';
+import './sass/main.scss';
+import './App.scss';
 
 export default class App extends Component {
   render() {

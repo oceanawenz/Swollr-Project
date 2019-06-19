@@ -33,14 +33,14 @@ addToExercises =(item)  => {
 }
 
 
-componentDidMount() {
-    axios.get(`/api/exercises`).then(exercises => {
-        console.log(exercises);
-        this.setState({
-            exercises: exercises.data
-        })
-    })
-}
+// componentDidMount() {
+//     axios.get(`/api/exercises`).then(exercises => {
+//         console.log(exercises);
+//         this.setState({
+//             exercises: exercises.data
+//         })
+//     })
+// }
 
 updateExercise(id, sets, reps) {
     axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
@@ -55,35 +55,45 @@ updateExercise(id, sets, reps) {
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             return (
-                <div key={exercise_id}>
-                    <div>{exercise_name}</div>
-                    <img src={`${exercise.image_url}`} alt=""/>
-                    <div>{instructions}</div>
-                    <div>
-                        <h4>Sets {sets}</h4>
-                        <button onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}>+</button>
-                        <button onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}>-</button>
+                <div className='exerciseCard' key={exercise_id}>
+                    <img className='exerciseImg' /*src={`${exercise.image_url}`}*/ alt=""/>
+                    <div className='exInfo'>
+                        <h4>{exercise_name}</h4>
+                        <p>{instructions}</p>
                     </div>
                     <div>
-                        <h4>Reps {reps}</h4>
-                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}>+</button>
-                        <button onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}>-</button>
+                        <h5>Sets</h5>
+                        <div className='countContainer'>
+                            <button className='plusBtn' onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}>+</button>
+                            {sets}
+                            <button className='minusBtn'onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}>-</button>
+                        </div>
+                       
                     </div>
                     <div>
-                    <button onClick={() => this.addToExercises({exercise_id, exercise_name, instructions, sets, reps})}>Add to list</button>
+                        <h5>Reps</h5>
+                        <div className='countContainer'>
+                            <button className='plusBtn' onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}>+</button>
+                            {reps}
+                            <button className='minusBtn'onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}>-</button>
+                        </div>
+                       
                     </div>
+                    <button className='addExBtn' onClick={() => this.addToExercises({exercise_id, exercise_name, instructions, sets, reps})}>(+)</button>
                 </div>
             )
         })
     // console.log(mappedExercises)
             return (
-            <div className='excerciseContainer'>
-            <h3>Exercises</h3>
-            
-            {mappedExercises}
-            <div>
+            <div className='pageBg'>
+                <div className='listContainer'>
                 <List/>
-            </div>
+                </div>
+                
+                <div className="exerciseContainer">
+                <h3>Exercises</h3>
+                    {mappedExercises}
+                </div>            
             </div>
             
         )
@@ -109,9 +119,3 @@ const invokedConnect = connect(
 )
 
 export default invokedConnect(Builder)
-
-
-
-
-
-                   

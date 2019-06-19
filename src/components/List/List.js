@@ -31,7 +31,7 @@ postExcercise(exercise){
 
 deleteExercise(id) {
     axios.delete(`/api/exercises/${id}`, {id}).then(exercise => {
-        console.log(exercise.data)
+        // console.log(exercise.data)
        this.props.removeFromUserList(exercise.data)
     })
 }
@@ -55,18 +55,14 @@ render() {
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
                     <div>
-                        <button onClick={() => this.deleteExercise(index)}>Delete</button>
+                        <button onClick={() => this.deleteExercise(exercise_id)}>Delete</button>
                     </div>
                 </div>                        
             )
         }) 
 
         return ( <div className="listContainer">
-            <h1>List</h1> 
-            {/* <label>
-                {wokoutName}
-            </label>  */}
-            {/* <textarea value={workoutName} /> */}
+            <h3>List</h3> 
             <input onChange={e => this.handleChange(e.target.value)}
                 value={workoutName}
                 name="workoutName"
@@ -100,4 +96,3 @@ const invokedConnect = connect(
 )
 
 export default invokedConnect(List)
-

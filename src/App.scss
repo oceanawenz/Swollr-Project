@@ -1,3 +1,12 @@
+$font-stack: 'Montserrat', sans-serif;
+$green-color: #3aa17e;
+$blue-color: #00537e;
+$light-gray-color: #eef0f2;
+$gray-color: #686c70;
+$dark-gray-color: #2d3033;
+$black-color: #202529;
+
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
 
 body {
@@ -46,18 +55,25 @@ h3 {
 
 h4 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
     text-transform: uppercase;
-    line-height: 34px;
+    line-height: 30px;
 }
 
+h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 24px;
+}
 
 p {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 25px;
+    line-height: 20px;
 }
 
 a {
@@ -81,7 +97,7 @@ button {
 }
 
 button, .onWhite {
-    background: #3aa17e;
+    background: $green-color;
     color: white;
     /* -webkit-transition: color 2s ease-out, background 2s ease-out;
     -moz-transition: color 2s ease-out;

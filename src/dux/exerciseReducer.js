@@ -30,10 +30,10 @@ export function addWorkoutName(input){
     }
 }
 
-export function removeFromUserList(item) {
+export function removeFromUserList(id) {
     return {
-        type: USER_LIST,
-        payload: item
+        type: REMOVE_FROM_LIST,
+        payload: id
     }
 }
 
@@ -43,10 +43,8 @@ export default function reducer(state = initialState, action) {
             return {...state, allExercises: action.payload}
         case USER_LIST:
             return {...state, userlist: [...state.userlist, action.payload]}
-        case REMOVE_FROM_LIST: 
-            console.log(action.payload)
-            let updatedList = state.userlist.filter(exercise => exercise.exercise_id !== action.payload.exercise_id)
-            return {...state, userlist: updatedList}
+            case REMOVE_FROM_LIST: 
+            return {...state, userlist: action.payload}
         case WORKOUT_NAME:
             return {...state, addWorkoutName: action.payload}
     default:

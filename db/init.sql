@@ -7,6 +7,7 @@ create table users (
     user_name varchar(40) not null unique,
     password text not null,
     email varchar(40) not null
+    foreign key(exercise_id) references exercises(exercise_id);
 );
 
 -- --Dummy Data
@@ -43,6 +44,9 @@ values('Dumbbell Bicep Curl', 'https://i.imgur.com/fSnFmTU.gifv', 'Hold two barb
 ('Weighted Calf Raise', 'https://i.imgur.com/3ldGoIQ.gifv', 'Hold a dumbbell in each hand. Stand up straight, then push through the balls of your feet and raise your heel until you are standing on your toes. Then lower slowly back to the start.', 0, 0),
 ('Dumbell Hammer Curl', 'https://i.imgur.com/ucdcFWL.gifv', 'Position two dumbbells to sides, palms facing in, arms straight. With elbows to sides, raise one dumbbell until forearm is vertical and thumb faces shoulder. Lower to original position and repeat with alternative arm.', 0, 0)
 
+
+alter table users
+add exercise_id integer;
 
 
 

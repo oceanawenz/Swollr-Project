@@ -16,6 +16,7 @@ export function addExerciseList(item) {
         payload: item
     }
 }
+
 export function addUserList(item) {
     return {
         type: USER_LIST,
@@ -43,7 +44,8 @@ export default function reducer(state = initialState, action) {
             return {...state, allExercises: action.payload}
         case USER_LIST:
             return {...state, userlist: [...state.userlist, action.payload]}
-            case REMOVE_FROM_LIST: 
+                // return {...state, userlist: action.payload}
+        case REMOVE_FROM_LIST: 
             return {...state, userlist: action.payload}
         case WORKOUT_NAME:
             return {...state, addWorkoutName: action.payload}

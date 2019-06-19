@@ -48,6 +48,7 @@ login = () => {
 
 
 render() {
+    console.log(this.state)
     const {email, password} = this.state;
     console.log(this.props)
     return <div>

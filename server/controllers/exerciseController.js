@@ -10,9 +10,10 @@ module.exports = {
 
     postExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const { exercise_id, exercise_name, img_url, instructions, sets, reps } = req.body;
-        db.post_exercises([exercise_id, exercise_name, img_url, instructions, sets, reps])
-        .then(post_exercises => res.status(200).send(post_exercises))
+        const {exercise_name, img_url, instructions, sets, reps } = req.body;
+        const {exercise_id, user_id} = req.params
+        db.post_exercises([exercise_id, user_id,exercise_name, img_url, instructions, sets, reps])
+        .then(newUserList => res.status(200).send(newUserList))
         .catch(err => {
             res.status(500).send(err)
         })
@@ -32,12 +33,12 @@ module.exports = {
 
     },
 
-    deleteExercise: (req, res, next) => {
+    deleteUserExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const {id} = req.params;
-        db.delete_exercise([id])
-        .then(delete_exercise => {
-            res.status(200).send(delete_exercise)
+        const {exercise_id, user_id} = req.params;
+        db.delete_exercise([exercise_id, user_id])
+        .then(newUserList=> {
+            res.status(200).send(newUserList)
         })
         .catch(err => {
             res.status(500).send(err)

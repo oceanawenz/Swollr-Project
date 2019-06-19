@@ -20,18 +20,29 @@ class Builder extends Component {
             // sets: 0
         }
         this.updateExercise = this.updateExercise.bind(this);
-    
        
     }
+
+componentDidMount() {
+        axios.get(`/api/user`).then(res => {
+            this.props.saveUser(res.data);
+        })
+ }
 
 addToExercises =(item)  => {
     // const {userList} = this.state;
     // var copy = [...exercises]
     // copy.push(item)
-    console.log(this.props)
+//     console.log(this.props)
     this.props.addUserList(item)
 }
 
+postExcercise(exercise_id, user_id ){
+    axios.post(`/api/exercise${exercise_id}/${user_id}`).then(res => {
+        // console.log(exercise.data)
+       this.props.addUserList(res.data)
+       })
+}
 
 // componentDidMount() {
 //     axios.get(`/api/exercises`).then(exercises => {
@@ -51,7 +62,6 @@ updateExercise(id, sets, reps) {
 
     render(){
         console.log(this.props);
-        console.log(this.state);
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             return (
@@ -79,7 +89,7 @@ updateExercise(id, sets, reps) {
                         </div>
                        
                     </div>
-                    <button className='addExBtn' onClick={() => this.addToExercises({exercise_id, exercise_name, instructions, sets, reps})}>(+)</button>
+                    <button className='addExBtn' onClick={() => this.postExcercise({exercise_id, exercise_name, instructions, sets, reps})}>(+)</button>
                 </div>
             )
         })

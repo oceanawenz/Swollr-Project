@@ -7,7 +7,7 @@ app.use(express.json());
 
 
 const {userInfo, login, register, logout} = require('./controllers/authController');
-const {getAllExercises, postExercise, updateExercise, deleteExercise} = require('./controllers/exerciseController')
+const {getAllExercises, postExercise, updateExercise,  deleteUserExercise} = require('./controllers/exerciseController')
 
 
 
@@ -39,10 +39,10 @@ app.post('/api/login', login);
 
 //exercise endpoints
 app.get("/api/exercises", getAllExercises);
-app.post("/api/exercise", postExercise);
+app.post("/api/exercise/:exercise_id/:user_id", postExercise);
 //update
 app.put("/api/exercises/:id", updateExercise);
-app.delete("/api/exercises/:id", deleteExercise);
+app.delete("/api/exercises/:exercise_id/:user_id",  deleteUserExercise);
 
 
 

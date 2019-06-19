@@ -44,10 +44,9 @@ register = () => {
     const {user_name, password, email} = this.state
     console.log("hit")
     axios.post('/api/register', {user_name, password, email}).then(res => {
-        // this.setState({ user_name: " ", password: " "});
         this.props.saveUser(res.data);
-        // console.log("recieved", res.data)
-        // console.log("hit")
+        console.log("recieved", res.data)
+        console.log("hit")
     }).catch(err => {
         console.log(err, "register not working")
     })

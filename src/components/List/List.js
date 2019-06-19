@@ -17,24 +17,22 @@ class List extends Component{
             list: [],
             workoutName: ""
         }
-        this.postExercise = this.postExcercise.bind(this)
     }
 
-
-
-postExcercise(exercise){
-    axios.post(`/api/exercise`, {exercise}).then(exercise => {
-        // console.log(exercise.data)
-       this.props.addExerciseList(exercise.data)
-       })
-}
-
-deleteExercise(id) {
-    axios.delete(`/api/exercises/${id}`, {id}).then(exercise => {
-        // console.log(exercise.data)
-       this.props.removeFromUserList(exercise.data)
+componentDidMount() {
+    axios.get(`/api/user`).then(res => {
+        this.props.saveUser(res.data);
     })
 }
+
+
+deleteUserExercise(exercise_id, user_id) {
+    axios.delete(`/api/exercises/${exercise_id}/${user_id}`).then(res => {
+        console.log(res.data)
+       this.props.removeFromUserList(res.data)
+    })
+}
+
 
 handleChange(value) {
     this.setState({
@@ -44,8 +42,9 @@ handleChange(value) {
 
 render() {
         const {workoutName} = this.state
-        // console.log(this.props)
+        console.log(this.props.user.user)
         console.log(this.props.exercises.userlist);
+        const {user_id} = this.props.user.user
         const mappedList = this.props.exercises.userlist.map((exercise, index) => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
                 return (
@@ -55,7 +54,7 @@ render() {
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
                     <div>
-                        <button onClick={() => this.deleteExercise(exercise_id)}>Delete</button>
+                        <button onClick={() => this.deleteUserExercise(exercise_id, user_id)}>Delete</button>
                     </div>
                 </div>                        
             )

@@ -28,8 +28,7 @@ SQL table for exercises
              image_url text not null,
              instructions text not null,
              sets integer not null,
-             reps integer not null,
-             user_id integer references users(user_id)
+             reps integer not null
 );
 
 insert into exercises (exercise_name, image_url, instructions, sets, reps)
@@ -45,16 +44,39 @@ values('Dumbbell Bicep Curl', 'https://i.imgur.com/fSnFmTU.gifv', 'Hold two barb
 ('Dumbell Hammer Curl', 'https://i.imgur.com/ucdcFWL.gifv', 'Position two dumbbells to sides, palms facing in, arms straight. With elbows to sides, raise one dumbbell until forearm is vertical and thumb faces shoulder. Lower to original position and repeat with alternative arm.', 0, 0)
 
 
-alter table users
-add exercise_id integer;
+create table userlist (
+    id serial primary key,
+    exercise_name text not null,
+    image_url text not null,
+    instructions text not null,
+    sets integer not null,
+    reps integer not null,
+    user_id integer not null,
+    exercise_id integer,
+    foreign key (exercise_id) references exercises(exercise_id)
+);
+
+insert into userlist(user_id, exercise_name, image_url, instructions, sets, reps, exercise_id)
+values(1, 'Dumbbell Bicep Curl', 'https://i.imgur.com/fSnFmTU.gifv', 'Hold two barbells, the arms are streched, the hands are on your side, the palms face inwards. Bend the arms and bring the weight with a fast movement up. At the same time, rotate your arms by 90 degrees at the very beginning of the movement. At the highest point, rotate a little the weights further outwards. Without a pause, bring them down, slowly.', 0, 0, 1);
 
 
 
---join statement:
 
-select users.user_id, user_name, exercises, exercise_name, sets, reps
-from users
-join exercises on (users.user_id = exercises.user_id);
 
--insert into exercises (exercised, user_id) 
-values()
+select u.user_name, e.exercise_name
+from users u
+join exercises e on e.exercise_id = u.exercise_id
+where exercise_id=1; 
+
+
+
+
+-- select * from userlist
+-- join exercises
+-- on exercises.exercise_id = userlist.userlist_id
+-- where userlist.user_id = 1;
+
+
+
+-- alter table exercises
+-- add column user_id integer references users(user_id);

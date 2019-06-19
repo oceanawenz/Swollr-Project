@@ -8,12 +8,10 @@ import './MyWorkouts.scss';
 
 class MyWorkouts extends Component {
     componentDidMount() {
-        axios.get(`/api/exercises`).then(exercises => {
-            console.log(exercises);
-            this.props.addExerciseList(
-                exercises.data)
+        axios.get(`/api/user`).then(res => {
+            this.props.saveUser(res.data);
         })
-    }
+ }
 
 
     render() {

@@ -8,15 +8,22 @@ module.exports = {
         })
     },
 
-    postExercise: (req, res, next) => {
+    addExercise: (req, res, next) => {
         const db = req.app.get('db');
-        const {exercise_name, img_url, instructions, sets, reps } = req.body;
-        const {exercise_id, user_id} = req.params
-        db.post_exercises([exercise_id, user_id,exercise_name, img_url, instructions, sets, reps])
+        console.log('this is the body', req.body)
+        const {exercise_id} = req.body;
+        const {user_id }= req.params
+        db.post_userlist([exercise_id, user_id])
         .then(newUserList => res.status(200).send(newUserList))
         .catch(err => {
+            console.log('err hit', err)
             res.status(500).send(err)
         })
+    },
+
+    addMyWorkouts: (req, res, next) => {
+        
+
     },
 
     updateExercise: (req, res, next) => {
@@ -35,12 +42,16 @@ module.exports = {
 
     deleteUserExercise: (req, res, next) => {
         const db = req.app.get('db');
+        console.log(req.body, "this is the delete")
+        console.log(req.params, 'this is the req params')
         const {exercise_id, user_id} = req.params;
-        db.delete_exercise([exercise_id, user_id])
+        db.delete_from_userlist([exercise_id, user_id])
         .then(newUserList=> {
+            console.log(newUserList)
             res.status(200).send(newUserList)
         })
         .catch(err => {
+            console.log(err, "delete error")
             res.status(500).send(err)
         })
     }

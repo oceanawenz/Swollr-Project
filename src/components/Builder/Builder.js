@@ -14,10 +14,10 @@ class Builder extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            exercises: [],
+            exercises: []
         }
         this.updateExercise = this.updateExercise.bind(this);
-       
+        this.addExcercise = this.addExcercise.bind(this);
     }
 
 componentDidMount() {
@@ -26,29 +26,34 @@ componentDidMount() {
         })
  }
 
-addToExercises =(item)  => {
-//     console.log(this.props)
-    this.props.addUserList(item)
+
+componentDidMount() {
+    axios.get(`/api/builder`).then(exercises => {
+        console.log(exercises);
+        this.setState({
+            exercises: exercises.data
+        })
+    })
 }
 
-postExcercise(exercise_id, user_id ){
-    axios.post(`/api/exercise${exercise_id}/${user_id}`).then(res => {
-        // console.log(exercise.data)
+
+// addToExercises =(item)  => {
+// //     console.log(this.props)
+//     this.props.addUserList(item)
+// }
+
+addExcercise(exercise_id, exercise_name, img_url, instructions, sets, reps ){
+    const {user_id} = this.props.user.user
+    console.log('exercise info', exercise_id, user_id, exercise_name, img_url, instructions, sets, reps)
+    axios.post(`/api/builder/${user_id}`, {exercise_id, exercise_name, img_url, instructions, sets, reps}).then(res => {
+        console.log(res.data)
        this.props.addUserList(res.data)
        })
 }
 
-// componentDidMount() {
-//     axios.get(`/api/exercises`).then(exercises => {
-//         console.log(exercises);
-//         this.setState({
-//             exercises: exercises.data
-//         })
-//     })
-// }
 
 updateExercise(id, sets, reps) {
-    axios.put(`/api/exercises/${id}`, {sets, reps}).then(exercise => {
+    axios.put(`/api/builder/${id}`, {sets, reps}).then(exercise => {
         console.log(exercise.data)
        this.props.addExerciseList(exercise.data)
     }) 
@@ -57,7 +62,7 @@ updateExercise(id, sets, reps) {
     render(){
         console.log(this.props);
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
-            const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
+            const {exercise_id, user_id, exercise_name, instructions, sets, reps} = exercise;
             return (
                 <div className='exerciseCard' key={exercise_id}>
                     <img className='exerciseImg' /*src={`${exercise.image_url}`}*/ alt=""/>
@@ -83,7 +88,7 @@ updateExercise(id, sets, reps) {
                         </div>
                        
                     </div>
-                    <button className='addExBtn' onClick={() => this.postExcercise({exercise_id, exercise_name, instructions, sets, reps})}>(+)</button>
+                    <button className='addExBtn' onClick={() => this.addExcercise(exercise_id, exercise_name, instructions, sets, reps)}>(+)</button>
                 </div>
             )
         })

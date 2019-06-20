@@ -80,3 +80,12 @@ where exercise_id=1;
 
 -- alter table exercises
 -- add column user_id integer references users(user_id);
+
+create table userlist (
+    id serial primary key,
+    user_id integer,
+    exercise_id integer references exercises(exercise_id)
+);
+
+select * from userlist
+join exercises on exercises.exercise_id = userlist.exercise_id;

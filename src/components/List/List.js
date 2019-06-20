@@ -26,8 +26,9 @@ componentDidMount() {
 }
 
 
-deleteUserExercise(exercise_id, user_id) {
-    axios.delete(`/api/exercises/${exercise_id}/${user_id}`).then(res => {
+deleteUserExercise(exercise_id) {
+    const {user_id} = this.props.user.user
+    axios.delete(`/api/builder/${exercise_id}/${user_id}`).then(res => {
         console.log(res.data)
        this.props.removeFromUserList(res.data)
     })
@@ -42,9 +43,9 @@ handleChange(value) {
 
 render() {
         const {workoutName} = this.state
-        console.log(this.props.user.user)
+        // console.log(this.props.user.user)
         console.log(this.props.exercises.userlist);
-        const {user_id} = this.props.user.user
+        // const {user_id} = this.props.user.user
         const mappedList = this.props.exercises.userlist.map((exercise, index) => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
                 return (
@@ -54,7 +55,7 @@ render() {
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
                     <div>
-                        <button onClick={() => this.deleteUserExercise(exercise_id, user_id)}>Delete</button>
+                        <button onClick={() => this.deleteUserExercise(exercise_id)}>Delete</button>
                     </div>
                 </div>                        
             )

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Header.scss';
 
 
-class Header extends Component {  
+
+class UserHeader extends Component {  
     render() {
         return (
         <header className="main-header">
@@ -12,11 +12,13 @@ class Header extends Component {
                 </NavLink>
                 <ul className="main-links">
                     <li>
-                        <NavLink to= '/login'>Login</NavLink>
+                        <NavLink to='/builder'>Builder</NavLink>
+                        <NavLink to='/myworkouts'>MyWorkouts</NavLink>
+                        <NavLink to= '/'>Logout</NavLink>
                     </li>
                 </ul>
         </header>
         )
     }   
 }
-export default Header;
+export default UserHeader;

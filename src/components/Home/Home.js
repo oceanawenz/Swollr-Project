@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
+import Header from '../Header/Header';
 import heroImg from '../../media/hero-img.jpg';
 import Signup from '../Signup/Signup';
 import './Home.scss';
@@ -8,6 +9,9 @@ export default class Home extends Component {
     render() {
         return (
             <div>
+                <div>
+                    <Header/>
+                </div>
                 <section className="heroBG">
                     <div className="container">
                         <div className="heroContent">

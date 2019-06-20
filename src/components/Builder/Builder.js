@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import UserHeader from '../UserHeader/UserHeader';
 import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
@@ -95,17 +96,18 @@ updateExercise(id, sets, reps) {
         })
     // console.log(mappedExercises)
             return (
-            <div className='pageBg'>
-                <div className='listContainer'>
-                <List/>
+            <div>
+                <UserHeader/>
+                <div className='pageBg'>
+                    <div className='listContainer'>
+                        <List/>
+                    </div>
+                    <div className="exerciseContainer">
+                        <h3>Exercises</h3>
+                        {mappedExercises}
+                    </div>            
                 </div>
-                
-                <div className="exerciseContainer">
-                <h3>Exercises</h3>
-                    {mappedExercises}
-                </div>            
-            </div>
-            
+            </div>  
         )
     }
 }

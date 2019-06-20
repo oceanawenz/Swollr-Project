@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
+import UserHeader from '../UserHeader/UserHeader';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
 import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addUserList } from '../../dux/exerciseReducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import './MyWorkouts.scss';
+import axios from 'axios';
+
+
 
 class MyWorkouts extends Component {
     componentDidMount() {
@@ -35,13 +38,14 @@ render() {
             )
         })        
         return (
+        <div>
             <div>
+                <UserHeader/>
+            </div>
             <h4>MyWorkouts</h4>
-        <NavLink to='/builder'>
-            <button>
-                Add New Workout
-            </button>
-        </NavLink>
+                <NavLink to='/builder'>
+                    <button>Add New Workout</button>
+                </NavLink>
             {mappedList}
         </div>
         )

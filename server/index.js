@@ -40,8 +40,6 @@ app.post('/api/login', login);
 //exercise endpoints
 app.get("/api/builder", getAllExercises);
 app.post("/api/builder/:user_id", addExercise);
-// app.post("/api/myexercises")
-
 
 //update
 app.put("/api/builder/:id", updateExercise);

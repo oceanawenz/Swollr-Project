@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     register: (req, res, next) => {
         const { user_name, password, email } = req.body;
-        // console.log(req.body)
+        console.log(req.body)
         const db = req.app.get('db');
         db.check_if_user_exists(email).then(foundUser => {
             console.log(user_name, "this is the user from check if user exists")

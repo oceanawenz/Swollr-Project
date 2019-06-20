@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import './Signup.scss';
 import axios from 'axios';
+import {ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -28,7 +29,9 @@ class Signup extends Component {
         this.state = {
             user_name: "",
             password: "",
-            email: ""
+            email: "", 
+            toggle: false,
+            redirect: false
         }
     }
 
@@ -43,22 +46,39 @@ universalChangeHandler = (prop, value) => {
 register = () => {
     const {user_name, password, email} = this.state
     console.log("hit")
+    if(!user_name || !password || !email) {
+        return alert("Please fill values")
+    }
     axios.post('/api/register', {user_name, password, email}).then(res => {
         this.props.saveUser(res.data);
-        console.log("recieved", res.data)
-        console.log("hit")
+        toast.success("Successful")
+        // console.log("recieved", res.data)
+        // console.log("hit")
+        if(!this.state.redirect){
+            this.setState({
+                redirect: true
+            })
+        }else {
+            this.setState({
+                redirect: false
+            })
+        }
+       
     }).catch(err => {
         console.log(err, "register not working")
     })
 }
 
     render() {
-        const {user_name, email, password} = this.state;
+        const {user_name, email, password, toggle} = this.state;
         console.log(this.state)
         const {user} = this.props; 
+        if(this.state.redirect){
+            return <Redirect to='/myworkouts'/>
+        }
         return <div className="signupForm">
             {/* if there is no user/user does not exist */}
-            {!user ? (
+            {toggle ? (
                 <div className="bgForm">
                     <div className="inputFields">
                         <div className="inputField">
@@ -97,18 +117,20 @@ register = () => {
                             />
                         </div>
                         <div>
-                            <NavLink to="/builder">
                             <button classnme="onWhite" onClick={this.register}>Signup</button>
-                            </NavLink>
-                            
+                            <button onClick={() =>this.setState({toggle: false})}>Hide</button>  
                         </div>
                     </div>
                 </div>
                 ) : (
-                  <h1>Hello User!</h1>
+                  <button onClick={() => this.setState({toggle: true})}>Signup</button>
                  
                  )}
-        </div>  
+                 <div>
+                     <ToastContainer/>
+                 </div>
+        </div>
+      
     }
 }
 

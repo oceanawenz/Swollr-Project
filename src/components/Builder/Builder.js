@@ -15,9 +15,6 @@ class Builder extends Component {
         super(props)
         this.state = {
             exercises: [],
-            // list: [],
-            // reps: 0,
-            // sets: 0
         }
         this.updateExercise = this.updateExercise.bind(this);
        
@@ -30,9 +27,6 @@ componentDidMount() {
  }
 
 addToExercises =(item)  => {
-    // const {userList} = this.state;
-    // var copy = [...exercises]
-    // copy.push(item)
 //     console.log(this.props)
     this.props.addUserList(item)
 }

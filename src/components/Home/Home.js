@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import heroImg from '../../media/hero-img.jpg';
+import Signup from '../Signup/Signup';
 import './Home.scss';
 
 export default class Home extends Component {
@@ -13,9 +14,7 @@ export default class Home extends Component {
                             <h1>WORKOUT PLANS MADE EASY</h1>
                             <p>The easiest tool online to build an exercises workout plan and save it to use whenever, wherever.</p>
                             <div className="spacer"></div>
-                            <NavLink to='/signup'>
-                                <button>Sign Up</button>
-                            </NavLink>
+                           <Signup/>
                             
                         </div>
                         {/* <img src={heroImg}/> */}

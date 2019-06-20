@@ -50,6 +50,9 @@ login = () => {
 render() {
     console.log(this.state)
     const {email, password} = this.state;
+    // if(!email || !password) {
+    //     return alert("Please fill values")
+    // }
     console.log(this.props)
     return <div>
             <div>

@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
+import { addUserList } from '../../dux/exerciseReducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import './MyWorkouts.scss';
 
@@ -21,19 +22,29 @@ class MyWorkouts extends Component {
     })
 }
 
-
-
-
-    render() {
-        console.log(this.props)
-        return <div>
+render() {
+    const mappedList = this.props.exercises.userlist.map((exercise, index) => {
+        const {exercise_name, instructions, sets, reps} = exercise;
+            return (
+                <div key={index}>
+                    <div>{exercise_name}</div>
+                    <div>{instructions}</div>
+                    <div>Sets: {sets}</div>
+                    <div>Reps: {reps}</div>
+                </div>                        
+            )
+        })        
+        return (
+            <div>
             <h4>MyWorkouts</h4>
         <NavLink to='/builder'>
             <button>
                 Add New Workout
             </button>
         </NavLink>
+            {mappedList}
         </div>
+        )
     }
 
 
@@ -45,7 +56,8 @@ const mapStateToProps = (reduxState) => {
 
 const mapDispatchToProps = {
     saveUser,
-    addExerciseList
+    addExerciseList,
+    addUserList
 }
 
 const invokedConnect = connect(

@@ -63,9 +63,10 @@ updateExercise(id, sets, reps) {
         console.log(this.props);
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
             const {exercise_id, user_id, exercise_name, instructions, sets, reps} = exercise;
+            console.log(exercise.image_url)
             return (
                 <div className='exerciseCard' key={exercise_id}>
-                    <img className='exerciseImg' /*src={`${exercise.image_url}`}*/ alt=""/>
+                    <img className='exerciseImg' src={`${exercise.image_url}`} alt=""/>
                     <div className='exInfo'>
                         <h4>{exercise_name}</h4>
                         <p>{instructions}</p>

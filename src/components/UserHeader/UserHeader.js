@@ -42,7 +42,7 @@ logout = () => {
                     <li>
                         <NavLink to='/builder'>Builder</NavLink>
                         <NavLink to='/myworkouts'>MyWorkouts</NavLink>
-                        <NavLink exact to= '/'>
+                        <NavLink exact to= '/home'>
                             <button onClick={this.logout}>Logout</button>
                         </NavLink>
                     </li>

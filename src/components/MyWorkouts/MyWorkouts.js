@@ -27,10 +27,11 @@ class MyWorkouts extends Component {
 
 render() {
     const mappedList = this.props.exercises.userlist.map((exercise, index) => {
-        const {exercise_name, instructions, sets, reps} = exercise;
+        const {exercise_name, instructions, image_url, sets, reps} = exercise;
             return (
                 <div key={index}>
                     <div>{exercise_name}</div>
+                    <img className='exerciseImg' src={`${exercise.image_url}`} alt=""/>
                     <div>{instructions}</div>
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>

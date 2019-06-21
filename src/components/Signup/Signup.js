@@ -54,7 +54,7 @@ register = () => {
     if(!user_name || !password || !email) {
         return alert("Please fill values")
     }
-    axios.post('/api/register', {user_name, password, email}).then(res => {
+    axios.post('/api/signup', {user_name, password, email}).then(res => {
         this.props.saveUser(res.data);
         toast.success("Successful")
         // console.log("recieved", res.data)

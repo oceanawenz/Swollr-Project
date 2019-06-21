@@ -20,12 +20,7 @@ module.exports = {
             res.status(500).send(err)
         })
     },
-
-    addMyWorkouts: (req, res, next) => {
-        
-
-    },
-
+    
     updateExercise: (req, res, next) => {
         const db = req.app.get('db');
         const { id } = req.params

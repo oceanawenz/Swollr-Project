@@ -11,11 +11,22 @@ const {getAllExercises, addExercise, updateExercise,  deleteUserExercise} = requ
 
 
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, TWILIO_ACCOUNT_SI, TWILIO_AUTH_TOKEN, MY_PHONE_NUMBER} = process.env
 
 
 
 const port = SERVER_PORT || 4000;
+
+
+const accountSid = TWILIO_ACCOUNT_SI;
+const authToken = TWILIO_AUTH_TOKEN;
+
+const client = require('twilio')(accountSid, authToken);
+
+
+
+
+
 
 massive(CONNECTION_STRING).then(db => {
     app.set("db", db);
@@ -45,8 +56,19 @@ app.post("/api/builder/:user_id", addExercise);
 app.put("/api/builder/:id", updateExercise);
 app.delete("/api/builder/:exercise_id/:user_id",  deleteUserExercise);
 
+//sms
+// app.get('/sendtext', (req, res) => {
+//     const {recipient, textmessage} = req.query
+// })
 
 
+client.messages
+  .create({
+     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     from: '+14804053390',
+     to: MY_PHONE_NUMBER
+   })
+  .then(message => console.log(message.sid));
 
 
 app.listen(port, () => console.log(`port running on ${port}`))

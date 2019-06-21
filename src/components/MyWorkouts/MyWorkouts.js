@@ -11,6 +11,22 @@ import axios from 'axios';
 
 
 class MyWorkouts extends Component {
+    constructor() {
+        super()
+        this.state = {
+            text: {
+                recipient: '',
+                textmessage: ''
+            }
+        }
+    }
+    
+
+sendText = () => {
+    const {text} = this.state
+}
+
+
     componentDidMount() {
         axios.get(`/api/user`).then(res => {
             this.props.saveUser(res.data);
@@ -35,6 +51,7 @@ render() {
                     <div>{instructions}</div>
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
+                    <button>Text to me</button>
                 </div>                        
             )
         })        

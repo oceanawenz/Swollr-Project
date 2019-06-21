@@ -41,7 +41,12 @@ universalChangeHandler = (prop, value) => {
     })
 }
 
-
+componentDidMount() {
+    axios.get('/api/user').then(res => {
+        // console.log(res.data);
+        this.props.saveUser(res.data)
+    })
+}
 
 register = () => {
     const {user_name, password, email} = this.state
@@ -62,17 +67,17 @@ register = () => {
             this.setState({
                 redirect: false
             })
-        }
-       
+        } 
     }).catch(err => {
         console.log(err, "register not working")
     })
 }
 
+
+
     render() {
         const {user_name, email, password, toggle} = this.state;
         console.log(this.state)
-        const {user} = this.props; 
         if(this.state.redirect){
             return <Redirect to='/myworkouts'/>
         }
@@ -117,8 +122,12 @@ register = () => {
                             />
                         </div>
                         <div>
-                            <button classnme="onWhite" onClick={this.register}>Signup</button>
-                            <button onClick={() =>this.setState({toggle: false})}>Hide</button>  
+                            <button className="onWhite" onClick={this.register}>Signup</button>
+                            {/* <button className="closeBtn" onClick={() =>this.setState({toggle: false})}>X</button>   */}
+                            <div className="closeBtn" onClick={() =>this.setState({toggle: false})}>
+                                <div className="exitDash"></div>
+                                <div className="exitDash"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,9 +135,9 @@ register = () => {
                   <button onClick={() => this.setState({toggle: true})}>Signup</button>
                  
                  )}
-                 <div>
+                 {/* <div>
                      <ToastContainer/>
-                 </div>
+                 </div> */}
         </div>
       
     }

@@ -37,7 +37,7 @@ app.get('/api/logout', logout);
 app.post('/api/register', register);
 app.post('/api/login', login);
 
-//exercise endpoints
+//endpoints
 app.get("/api/builder", getAllExercises);
 app.post("/api/builder/:user_id", addExercise);
 

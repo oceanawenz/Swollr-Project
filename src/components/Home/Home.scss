@@ -5,6 +5,7 @@
     background-size: $property; 
 }
 
+
 .heroBG{
     /* height: 700px; */
     width: 100%;
@@ -68,7 +69,7 @@
 }
 
 
-//Tablet. Anything bigger than the breakpoint(960). 
+//Tablet. Anything bigger than the breakpoint(500). 
 @media only screen and (min-width: 500px) {
     .heroBG{
         /* Moving the hero section up 100px to sit behind the header */

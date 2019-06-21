@@ -34,7 +34,7 @@ module.exports = {
          //if the user attempts to login with username, but their username is not found
         db.check_if_user_exists(email).then((userFound) => {
              if(!userFound[0]) {
-                 res.status(200).send('User already exists')
+                 res.status(200).send('User does not exist')
              } else {
                  bcrypt.compare(password, userFound[0].password).then(matchedPassword => {
                      //if there is a matched password

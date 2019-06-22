@@ -17,9 +17,10 @@ class MyWorkouts extends Component {
             text: {
                 recipient: '',
                 textmessage: ''
-            }
+            } 
         }
-    }
+    }       
+    
     
 
 sendText = () => {
@@ -27,7 +28,7 @@ sendText = () => {
 }
 
 
-    componentDidMount() {
+componentDidMount() {
         axios.get(`/api/user`).then(res => {
             this.props.saveUser(res.data);
         })
@@ -51,7 +52,7 @@ render() {
                     <div>{instructions}</div>
                     <div>Sets: {sets}</div>
                     <div>Reps: {reps}</div>
-                    <button>Text to me</button>
+                    
                 </div>                        
             )
         })        
@@ -65,12 +66,15 @@ render() {
                     <button>Add New Workout</button>
                 </NavLink>
             {mappedList}
+            <div>
+                <button>Text to me</button>
+            </div>
         </div>
-        )
+            )
+        }
     }
 
 
-}
 
 const mapStateToProps = (reduxState) => {
     return reduxState;

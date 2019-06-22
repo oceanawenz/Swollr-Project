@@ -6,6 +6,9 @@ const app = express();
 app.use(express.json());
 
 
+app.use(express.static(__dirname + '/../build'));
+
+
 const {userInfo, login, register, logout} = require('./controllers/authController');
 const {getAllExercises, addExercise, updateExercise,  deleteUserExercise} = require('./controllers/exerciseController')
 
@@ -18,10 +21,10 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, TWILIO_ACCOUNT_SI, TWILIO
 const port = SERVER_PORT || 4000;
 
 
-const accountSid = TWILIO_ACCOUNT_SI;
-const authToken = TWILIO_AUTH_TOKEN;
+// const accountSid = TWILIO_ACCOUNT_SI;
+// const authToken = TWILIO_AUTH_TOKEN;
 
-const client = require('twilio')(accountSid, authToken);
+// const client = require('twilio')(accountSid, authToken);
 
 
 
@@ -57,18 +60,21 @@ app.put("/api/builder/:id", updateExercise);
 app.delete("/api/builder/:exercise_id/:user_id",  deleteUserExercise);
 
 //sms
-// app.get('/sendtext', (req, res) => {
-//     const {recipient, textmessage} = req.query
+// app.post('/sendtext', (req, res) => {
+//     client.messages
+//     .create({
+//        body: req.body.body,
+//        from: '+14804053390',
+//        to: MY_PHONE_NUMBER
+//      })
+//     .then(message => console.log(message.sid));
 // })
 
 
-client.messages
-  .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-     from: '+14804053390',
-     to: MY_PHONE_NUMBER
-   })
-  .then(message => console.log(message.sid));
 
+const path = require('path');
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../build/index.html'))
+});
 
 app.listen(port, () => console.log(`port running on ${port}`))

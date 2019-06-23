@@ -135,6 +135,17 @@ register = () => {
                   <button onClick={() => this.setState({toggle: true})}>Signup</button>
                  
                  )}
+
+                {/* {toggle ? (
+                    <div>
+                        <button onClick={() => this.setState({toggle: false})}>Signup</button>
+                    </div>
+                ) : (
+                    <div>
+                        <button onClick={() => this.setState({toggle: true})}>Signup</button>
+                    </div>
+                 )} */}
+
                  {/* <div>
                      <ToastContainer/>
                  </div> */}

@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 
-app.use(express.static(__dirname + '/../build'));
+app.use( express.static( `${__dirname}/../build` ));
 
 
 const {userInfo, login, register, logout} = require('./controllers/authController');

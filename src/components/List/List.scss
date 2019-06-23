@@ -1,3 +1,49 @@
+$font-stack: 'Montserrat', sans-serif;
+$green-color: #3aa17e;
+$blue-color: #00537e;
+$light-gray-color: #C7D4DB;
+$gray-color: #686c70;
+$dark-gray-color: #2d3033;
+$black-color: #202529;
+
 .listContainer {
-    width: 300px;
+    width: 350px;
+    background: white;
+    padding: 20px;
+}
+
+.itemBox {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 18px 10px 10px 10px;
+    box-shadow: 0 6px 10px $light-gray-color;
+    background: white;
+}
+
+.counter{
+    color: $gray-color;
+    padding-top: 3px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+    align-content: stretch;
+    p {
+        margin-right: 10px; 
+    }
+}
+
+
+.delete {
+    font-size: 20px;
+    text-align: center;
+    color: $blue-color;
+    padding-top: 2px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+
 }

@@ -4,9 +4,65 @@ import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import { addUserList } from '../../dux/exerciseReducer';
+import {FaPlusCircle, FaMinusCircle} from 'react-icons/fa'
 import '../Builder/Builder.scss'
+import styled from 'styled-components';
 import List from '../List/List';
 import axios from 'axios';
+
+
+// Create a Wrapper component that'll render a <div> tag with some styles
+const Wrapper = styled.div`
+    text-align: center;
+`;
+
+// Create a Wrapper component that'll render a <span> tag with some styles
+const WrapperHead = styled.span`
+    margin-bottom: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 24px;
+`;
+
+// Create a WrapperBtn component that'll render a <div> tag with some styles
+const WrapperBtn = styled.div`
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: #3aa17e;
+`;
+
+// Create a Wrapper component that'll render a <span> tag with some styles
+const WrapperSpan = styled.span`
+    text-align: center;
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+`;
+
+
+// // Setup toggle styles
+// const ToggleInput = styled.input`
+//     display: none;
+// `;
+// const ToggleLabel = styled.label`
+//     display: block:
+//     cursor: pointer;
+//     &:hover
+//         background-color: #345123;
+//     &:after
+//         content:"+"
+
+// `;
+// const ToggleContent = styled.div`
+//     max-height: 0;
+//     overflow: hidden;
+//     +transition(.3s ease max-height)
+// `;
+
+
 
 
 
@@ -15,11 +71,15 @@ class Builder extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            exercises: []
+            exercises: [],
+            toggle: false
         }
         this.updateExercise = this.updateExercise.bind(this);
         this.addExcercise = this.addExcercise.bind(this);
     }
+
+
+
 
 componentDidMount() {
         axios.get(`/api/user`).then(res => {
@@ -62,44 +122,70 @@ updateExercise(id, sets, reps) {
 
     render(){
         console.log(this.props);
+        const {toggle} = this.state;
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
-            const {exercise_id, user_id, exercise_name, instructions, sets, reps} = exercise;
+            const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             console.log(exercise.image_url)
-            return (
+            return ( 
                 <div className='exerciseCard' key={exercise_id}>
                     <img className='exerciseImg' src={`${exercise.image_url}`} alt=""/>
                     <div className='exInfo'>
                         <h4>{exercise_name}</h4>
-                        <p>{instructions}</p>
+                        {/* <p className>{instructions}</p> */}
+                        {/* <ToggleInput type='checkbox' value='selected'></ToggleInput>
+                        <ToggleLabel for="toggle-input">Description</ToggleLabel>
+                        <ToggleContent>
+                            <p>{instructions}</p>
+                        </ToggleContent> */}
+
+
+                        {/* <input className='toggle-input' type='checkbox' value='selected'></input>
+                        <label className='toggle-label' for="toggle-input">Description</label>
+                        <p>{instructions}</p> */}
+                        
+                        
+                        {/* {toggle ? (
+                            <div>
+                                <button key={exercise_id} onClick={() => this.setState({toggle: false})}>Signup</button>
+                            </div>
+                        ) : (
+                            <div>
+                                
+                                <button key={exercise_id} onClick={() => this.setState({toggle: true})}>Signup</button>
+                            </div>
+                        )} */}
+                        
                     </div>
-                    <div>
-                        <h5>Sets</h5>
+                    <Wrapper>
+                        <WrapperHead>Sets</WrapperHead>
                         <div className='countContainer'>
-                            <button className='plusBtn' onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}>+</button>
-                            {sets}
-                            <button className='minusBtn'onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}>-</button>
+                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}><FaMinusCircle/></WrapperBtn>
+                            <WrapperSpan>{sets}</WrapperSpan>
+                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}><FaPlusCircle/></WrapperBtn> 
                         </div>
                        
-                    </div>
-                    <div>
-                        <h5>Reps</h5>
+                    </Wrapper>
+                    <Wrapper>
+                        <WrapperHead>Reps</WrapperHead>
                         <div className='countContainer'>
-                            <button className='plusBtn' onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}>+</button>
-                            {reps}
-                            <button className='minusBtn'onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}>-</button>
+                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}><FaMinusCircle/></WrapperBtn>
+                            <WrapperSpan>{reps}</WrapperSpan>
+                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}><FaPlusCircle/></WrapperBtn>
                         </div>
                        
-                    </div>
+                    </Wrapper>
+
                     <button className='addExBtn' onClick={() => this.addExcercise(exercise_id, exercise_name, instructions, sets, reps)}>(+)</button>
                 </div>
             )
         })
     // console.log(mappedExercises)
-            return (
+            return ( 
             <div>
                 <UserHeader/>
                 <div className='pageBg'>
-                    <div className='listContainer'>
+                    <div>
+                        <h3>List</h3> 
                         <List/>
                     </div>
                     <div className="exerciseContainer">

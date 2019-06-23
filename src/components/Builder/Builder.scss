@@ -13,9 +13,11 @@
 
 }
 
-.listContainer {
-    width: 300px;
-}
+// .listContainer {
+//     // width: 300px;
+//     // background: white;
+//     // padding: 10px;
+// }
 
 .exerciseContainer {
     flex-grow: 1;
@@ -47,6 +49,12 @@
     margin-right: 10px;
 }
 .countContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+    align-content: stretch;
     margin-right: 10px;
 }
 
@@ -68,3 +76,4 @@
     height: 40px;
     margin-right: 20px;
 }
+

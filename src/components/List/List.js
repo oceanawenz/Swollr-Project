@@ -6,6 +6,7 @@ import { addExerciseList } from '../../dux/exerciseReducer';
 import { addUserList } from '../../dux/exerciseReducer';
 import { addWorkoutName } from '../../dux/exerciseReducer';
 import { removeFromUserList } from '../../dux/exerciseReducer';
+import {FaTrashAlt} from 'react-icons/fa'
 import './List.scss';
 import axios from 'axios';
 
@@ -49,27 +50,26 @@ render() {
         const mappedList = this.props.exercises.userlist.map((exercise, index) => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
                 return (
-                <div key={index}>
-                    <div>{exercise_name}</div>
-                    <div>{instructions}</div>
-                    <div>Sets: {sets}</div>
-                    <div>Reps: {reps}</div>
-                    <div>
-                        <button onClick={() => this.deleteUserExercise(exercise_id)}>Delete</button>
+                <div className='itemBox' key={index}>
+                    <h5>{exercise_name}</h5>
+                    {/* <div>{instructions}</div> */}
+                    <div className="counter">
+                        <p>Sets: {sets}</p>
+                        <p>Reps: {reps}</p>
                     </div>
+                    <div className="delete" onClick={() => this.deleteUserExercise(exercise_id)}><FaTrashAlt/></div>
                 </div>                        
             )
         }) 
 
         return ( <div className="listContainer">
-            <h3>List</h3> 
+           
+            <div> {mappedList}</div>
             <input onChange={e => this.handleChange(e.target.value)}
                 value={workoutName}
                 name="workoutName"
                 placeholder="Name Your Workout"
             />
-            <div> {mappedList}</div>
-            
             <NavLink to='/myworkouts'>
                 <button>Save</button>
             </NavLink>

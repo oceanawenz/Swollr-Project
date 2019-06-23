@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { saveUser } from '../../dux/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import './UserHeader.scss';
 // import {} from 'react-icons';
 
 
@@ -43,7 +44,8 @@ logout = () => {
                         <NavLink to='/builder'>Builder</NavLink>
                         <NavLink to='/myworkouts'>MyWorkouts</NavLink>
                         <NavLink exact to= '/home'>
-                            <button onClick={this.logout}>Logout</button>
+                            <div onClick={this.logout}>LOGOUT</div>
+                            {/* <button onClick={this.logout}>Logout</button> */}
                         </NavLink>
                     </li>
                 </ul>

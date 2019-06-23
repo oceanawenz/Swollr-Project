@@ -23,9 +23,9 @@ class MyWorkouts extends Component {
     
     
 
-sendText = () => {
-    const {text} = this.state
-}
+// sendText = () => {
+//     const {text} = this.state
+// }
 
 
 componentDidMount() {

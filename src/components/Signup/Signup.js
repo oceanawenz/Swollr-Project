@@ -122,7 +122,7 @@ register = () => {
                             />
                         </div>
                         <div>
-                            <button className="onWhite" onClick={this.register}>Signup</button>
+                            <button className="onWhite formBtn" onClick={this.register}>Signup</button>
                             {/* <button className="closeBtn" onClick={() =>this.setState({toggle: false})}>X</button>   */}
                             <div className="closeBtn" onClick={() =>this.setState({toggle: false})}>
                                 <div className="exitDash"></div>

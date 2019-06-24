@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import { addUserList } from '../../dux/exerciseReducer';
-import {FaPlusCircle, FaMinusCircle} from 'react-icons/fa'
+import {FaPlusCircle, FaMinusCircle, FaPlus} from 'react-icons/fa'
 import '../Builder/Builder.scss'
 import styled from 'styled-components';
 import List from '../List/List';
@@ -139,9 +139,9 @@ updateExercise(id, sets, reps) {
                         </ToggleContent> */}
 
 
-                        {/* <input className='toggle-input' type='checkbox' value='selected'></input>
-                        <label className='toggle-label' for="toggle-input">Description</label>
-                        <p>{instructions}</p> */}
+                        {/* <input className='toggle-input' type='checkbox' value='selected'></input> */}
+                        {/* <label className='toggle-label' for="toggle-input">Description</label> */}
+                        <p>{instructions}</p>
                         
                         
                         {/* {toggle ? (
@@ -175,7 +175,7 @@ updateExercise(id, sets, reps) {
                        
                     </Wrapper>
 
-                    <button className='addExBtn' onClick={() => this.addExcercise(exercise_id, exercise_name, instructions, sets, reps)}>(+)</button>
+                    <div className='addExBtn' onClick={() => this.addExcercise(exercise_id, exercise_name, instructions, sets, reps)}><FaPlus/></div>
                 </div>
             )
         })

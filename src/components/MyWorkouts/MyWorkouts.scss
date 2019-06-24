@@ -1,0 +1,58 @@
+$gray-color: #686c70;
+$green-color: #3aa17e;
+$blue-color: #00537e;
+$light-gray-color: #eef0f2;
+$gray-color: #686c70;
+$dark-gray-color: #2d3033;
+$black-color: #202529;
+
+
+
+.pageBg2 {
+    background: rgb(58,161,126);
+    background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%);
+    margin-top: -100px;
+    padding: 120px 20px 50px 20px;
+    min-height: 110vh;
+    h3 {
+        color: white;
+        margin-bottom: 6px;
+    }
+
+}
+
+.workoutCard {
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: white;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch;
+}
+
+.workoutName {
+
+
+}
+
+.workoutImg {
+    height: 100px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.workoutInfo {
+    max-width: 600px;
+    margin-right: 10px;
+}
+
+.workoutCount {
+
+}
+
+.workoutCount {
+
+}

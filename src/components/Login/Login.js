@@ -98,7 +98,7 @@ render() {
                         />
                     </div>
                     <div>
-                    <button onClick={this.login}>Login</button>
+                    <button className="formBtn" onClick={this.login}>Login</button>
                     </div>
                     <div className="closeBtn" onClick={() =>this.setState({toggle: false})}>
                                 <div className="exitDash"></div>

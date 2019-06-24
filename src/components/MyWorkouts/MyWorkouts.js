@@ -6,9 +6,15 @@ import { saveUser } from '../../dux/reducer';
 import { addUserList } from '../../dux/exerciseReducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
 import './MyWorkouts.scss';
+import styled from 'styled-components';
 import axios from 'axios';
 
 
+
+// Create a WrapperSpan component that'll render a <span> tag with some styles
+const WrapperSpan = styled.span`
+    color: #00537e;
+`;
 
 class MyWorkouts extends Component {
     constructor() {
@@ -43,31 +49,33 @@ componentDidMount() {
 }
 
 render() {
+    // const {workoutName} = this.props
     const mappedList = this.props.exercises.userlist.map((exercise, index) => {
         const {exercise_name, instructions, image_url, sets, reps} = exercise;
             return (
-                <div key={index}>
-                    <div>{exercise_name}</div>
-                    <img className='exerciseImg' src={`${exercise.image_url}`} alt=""/>
-                    <div>{instructions}</div>
-                    <div>Sets: {sets}</div>
-                    <div>Reps: {reps}</div>
-                    
+                <div className='workoutCard' key={index}>
+                    <img className='workoutImg' src={`${exercise.image_url}`} alt=""/>
+                    <div className='workoutInfo'>
+                        <h4>{exercise_name}</h4>
+                        <p>{instructions}</p>
+                    </div>
+                    <h4 className='workoutCount'>Sets: <WrapperSpan>{sets}</WrapperSpan></h4>
+                    <h4 className='workoutCount'>Reps: <WrapperSpan>{reps}</WrapperSpan></h4>
                 </div>                        
             )
         })        
         return (
         <div>
-            <div>
-                <UserHeader/>
-            </div>
-            <h4>MyWorkouts</h4>
+            <UserHeader/>
+            <div className='pageBg2'>
+                <h3>My Workouts</h3>
                 <NavLink to='/builder'>
                     <button>Add New Workout</button>
                 </NavLink>
-            {mappedList}
-            <div>
-                <button>Text to me</button>
+                <div>
+                    <button>Text to me</button>
+                </div>
+                {mappedList}
             </div>
         </div>
             )

@@ -1,15 +1,26 @@
+$gray-color: #686c70;
+$green-color: #3aa17e;
+$blue-color: #00537e;
+$light-gray-color: #eef0f2;
+$gray-color: #686c70;
+$dark-gray-color: #2d3033;
+$black-color: #202529;
+
 .pageBg {
     background: rgb(58,161,126);
     background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%);
     margin-top: -100px;
-    padding: 100px 20px 50px 20px;
+    padding: 120px 20px 50px 20px;
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
     align-content: stretch;
-
+    h3 {
+        color: white;
+        margin-bottom: 6px;
+    }
 
 }
 
@@ -38,12 +49,11 @@
 }
 
 .exInfo {
-    width: 400px;
+    // width: 400px;
     margin-right: 10px;
 }
 
 .exerciseImg {
-    background-color: yellow;
     height: 100px;
     width: 100px;
     margin-right: 10px;
@@ -74,6 +84,15 @@
     order: -1;
     width: 40px;
     height: 40px;
-    margin-right: 20px;
+    color: $blue-color;
+    font-size: 34px;
+    text-align: center;
+    margin: 0 10px;
+    padding-top: 3px;
+    transition: all .2s ease-out;
 }
 
+.addExBtn:hover {
+    color: $green-color;
+    transform: scale(1.1)
+}

@@ -14,8 +14,8 @@ const {getAllExercises, addExercise, updateExercise,  deleteUserExercise} = requ
 
 
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, TWILIO_ACCOUNT_SI, TWILIO_AUTH_TOKEN, MY_PHONE_NUMBER} = process.env
-
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
+// TWILIO_ACCOUNT_SI, TWILIO_AUTH_TOKEN, MY_PHONE_NUMBER}
 
 
 const port = SERVER_PORT || 4000;
@@ -63,7 +63,7 @@ app.delete("/api/builder/:exercise_id/:user_id",  deleteUserExercise);
 // app.post('/sendtext', (req, res) => {
 //     client.messages
 //     .create({
-//        body: req.body.body,
+//        body: 'Hello from twilio',
 //        from: '+14804053390',
 //        to: MY_PHONE_NUMBER
 //      })

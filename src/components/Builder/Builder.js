@@ -115,8 +115,6 @@ addExcercise(exercise_id, exercise_name, img_url, instructions, sets, reps ){
 
 
 addToExcercise(id, sets, reps) {
-  
-
     axios.put(`/api/builder/${id}`, {sets, reps}).then(exercise => {
         console.log(exercise.data)
        this.props.addExerciseList(exercise.data)

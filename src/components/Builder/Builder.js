@@ -74,8 +74,9 @@ class Builder extends Component {
             exercises: [],
             toggle: false
         }
-        this.updateExercise = this.updateExercise.bind(this);
         this.addExcercise = this.addExcercise.bind(this);
+        this.addToExcercise = this.addToExcercise.bind(this)
+        this.subtractToExcercise = this.subtractToExcercise.bind(this)
     }
 
 
@@ -113,7 +114,22 @@ addExcercise(exercise_id, exercise_name, img_url, instructions, sets, reps ){
 }
 
 
-updateExercise(id, sets, reps) {
+addToExcercise(id, sets, reps) {
+  
+
+    axios.put(`/api/builder/${id}`, {sets, reps}).then(exercise => {
+        console.log(exercise.data)
+       this.props.addExerciseList(exercise.data)
+    }) 
+}
+
+subtractToExcercise(id, sets, reps) {
+    if(sets === 0){
+        return 
+    }
+    if(reps === 0) {
+        return
+    }
     axios.put(`/api/builder/${id}`, {sets, reps}).then(exercise => {
         console.log(exercise.data)
        this.props.addExerciseList(exercise.data)
@@ -122,7 +138,7 @@ updateExercise(id, sets, reps) {
 
     render(){
         console.log(this.props);
-        const {toggle} = this.state;
+        // const {toggle} = this.state;
         const mappedExercises = this.props.exercises.allExercises.map(exercise => {
             const {exercise_id, exercise_name, instructions, sets, reps} = exercise;
             console.log(exercise.image_url)
@@ -159,18 +175,18 @@ updateExercise(id, sets, reps) {
                     <Wrapper>
                         <WrapperHead>Sets</WrapperHead>
                         <div className='countContainer'>
-                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets-1, reps)}><FaMinusCircle/></WrapperBtn>
+                            <WrapperBtn  onClick={()=> this.subtractToExcercise(exercise_id, sets-1, reps)}><FaMinusCircle/></WrapperBtn>
                             <WrapperSpan>{sets}</WrapperSpan>
-                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets+1, reps)}><FaPlusCircle/></WrapperBtn> 
+                            <WrapperBtn  onClick={()=> this.addToExcercise(exercise_id, sets+1, reps)}><FaPlusCircle/></WrapperBtn> 
                         </div>
                        
                     </Wrapper>
                     <Wrapper>
                         <WrapperHead>Reps</WrapperHead>
                         <div className='countContainer'>
-                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets, reps-1)}><FaMinusCircle/></WrapperBtn>
+                            <WrapperBtn  onClick={()=> this.subtractToExcercise(exercise_id, sets, reps-1)}><FaMinusCircle/></WrapperBtn>
                             <WrapperSpan>{reps}</WrapperSpan>
-                            <WrapperBtn  onClick={()=> this.updateExercise(exercise_id, sets, reps+1)}><FaPlusCircle/></WrapperBtn>
+                            <WrapperBtn  onClick={()=> this.addToExcercise(exercise_id, sets, reps+1)}><FaPlusCircle/></WrapperBtn>
                         </div>
                        
                     </Wrapper>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import logo from '../../media/swollr-logo.svg';
 import styled from 'styled-components';
 import './Header.scss';
@@ -39,7 +39,7 @@ class Header extends Component {
         return (
         <header className="main-header">
                 <WrapperLogo to="/">
-                    <img className="main-logo" src={logo}/>
+                    <img className="main-logo" src={logo} alt='website logo'/>
                     <WrapperH4>Sw<WrapperSpan>ollr</WrapperSpan></WrapperH4>
                     
                 </WrapperLogo>

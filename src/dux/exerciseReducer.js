@@ -2,7 +2,8 @@
 const initialState = {
   allExercises: [],
   userlist: [],
-  myExercises: []
+  myExercises: [],
+  workoutName: ""
 }
 
 const EXERCISE_LIST = "EXERCISE_LIST";

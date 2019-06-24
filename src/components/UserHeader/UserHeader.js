@@ -66,9 +66,11 @@ logout = () => {
     render() {
         return (
         <header className="main-header userSide">
-                <WrapperLogo to="/">
-                    <img className="main-logo" src={logo}/>
+                <WrapperLogo>
+                    <NavLink to='/home'>
+                    <img className="main-logo" src={logo} alt='main logo'/>
                     <WrapperH4>Sw<WrapperSpan>ollr</WrapperSpan></WrapperH4>
+                    </NavLink>
                 </WrapperLogo>
 
                 <div  className="pageLinks">

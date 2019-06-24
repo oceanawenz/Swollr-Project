@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import './Signup.scss';
 import axios from 'axios';
-import {ToastContainer, toast } from 'react-toastify';
+// import {ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -56,7 +56,7 @@ register = () => {
     }
     axios.post('/api/signup', {user_name, password, email}).then(res => {
         this.props.saveUser(res.data);
-        toast.success("Successful")
+        // toast.success("Successful")
         // console.log("recieved", res.data)
         // console.log("hit")
         if(!this.state.redirect){
@@ -77,7 +77,7 @@ register = () => {
 
     render() {
         const {user_name, email, password, toggle} = this.state;
-        console.log(this.state)
+        console.log(this.props.user.user)
         if(this.state.redirect){
             return <Redirect to='/myworkouts'/>
         }
@@ -135,20 +135,6 @@ register = () => {
                   <button onClick={() => this.setState({toggle: true})}>Signup</button>
                  
                  )}
-
-                {/* {toggle ? (
-                    <div>
-                        <button onClick={() => this.setState({toggle: false})}>Signup</button>
-                    </div>
-                ) : (
-                    <div>
-                        <button onClick={() => this.setState({toggle: true})}>Signup</button>
-                    </div>
-                 )} */}
-
-                 {/* <div>
-                     <ToastContainer/>
-                 </div> */}
         </div>
       
     }

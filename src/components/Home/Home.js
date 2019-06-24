@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import { NavLink } from 'react-router-dom';
 import Header from '../Header/Header';
-import heroImg from '../../media/hero-img.jpg';
 import Signup from '../Signup/Signup';
 import signupImg from '../../media/sign-up.png';
 import listImg from '../../media/build-a-list.png';
@@ -31,19 +29,19 @@ export default class Home extends Component {
                 <div className='container'>
                     <h3 className="sectionTitle">How It Works</h3>
                     <div className="oneThird">
-                        <img className="infoIcon" src={signupImg}/>
+                        <img className="infoIcon" src={signupImg} alt='sign up icon'/>
                         <h4>SIGNUP <br></br>OR LOGIN</h4>
                         <div className="spacer ten"></div>
                         <p>Create an account to get started, or you can login at the top if you're already a user.</p>
                     </div>
                     <div className="oneThird">
-                        <img className="infoIcon" src={listImg}/>
+                        <img className="infoIcon" src={listImg} alt='main page info icon'/>
                         <h4>ADD A NEW WORKOUT PLAN</h4>
                         <div className="spacer ten"></div>
                         <p>Quickly build your custom workouts simply by adjusting sets and reps and adding it to your list.</p>
                     </div>
                     <div className="oneThird">
-                        <img className="infoIcon" src={saveImg}/>
+                        <img className="infoIcon" src={saveImg} alt='main page info icon'/>
                         <h4>Save to your Workouts</h4>
                         <div className="spacer ten"></div>
                         <p>Boom. Once you save your custom plan, you'll be able to view it whenever.</p>
@@ -51,11 +49,11 @@ export default class Home extends Component {
                 </div>
                 <div className='container'>
                     <div className="lastContainer">
-                        <h3>TIME TO GET SWOLL</h3>
+                        <h3>TIME FOR SOME GAINZ</h3>
                         <div className="spacer ten"></div>
                         <p>No more worrying about exercise routines</p> 
                     </div>
-                    <img className="final" src={swollImg}/>
+                    <img className="final" src={swollImg} alt='main page info icon'/>
                 </div>
 
             </div>

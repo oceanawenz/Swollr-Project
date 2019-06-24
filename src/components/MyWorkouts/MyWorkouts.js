@@ -50,11 +50,12 @@ componentDidMount() {
 
 render() {
     // const {workoutName} = this.props
+    console.log(this.props)
     const mappedList = this.props.exercises.userlist.map((exercise, index) => {
         const {exercise_name, instructions, image_url, sets, reps} = exercise;
             return (
                 <div className='workoutCard' key={index}>
-                    <img className='workoutImg' src={`${exercise.image_url}`} alt=""/>
+                    <img className='workoutImg' src={`${image_url}`} alt=""/>
                     <div className='workoutInfo'>
                         <h4>{exercise_name}</h4>
                         <p>{instructions}</p>
@@ -72,9 +73,9 @@ render() {
                 <NavLink to='/builder'>
                     <button>Add New Workout</button>
                 </NavLink>
-                <div>
+                {/* <div>
                     <button>Text to me</button>
-                </div>
+                </div> */}
                 {mappedList}
             </div>
         </div>

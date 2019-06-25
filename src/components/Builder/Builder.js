@@ -14,6 +14,7 @@ import axios from 'axios';
 // Create a Wrapper component that'll render a <div> tag with some styles
 const Wrapper = styled.div`
     text-align: center;
+
 `;
 
 // Create a Wrapper component that'll render a <span> tag with some styles
@@ -27,12 +28,10 @@ const WrapperHead = styled.span`
 `;
 
 // Create a WrapperBtn component that'll render a <div> tag with some styles
-const WrapperBtn = styled.div`
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    color: #3aa17e;
-`;
+// const WrapperBtn = styled.div`
+//     font-size: 20px;
+//     color: #3aa17e;
+// `;
 
 // Create a Wrapper component that'll render a <span> tag with some styles
 const WrapperSpan = styled.span`
@@ -145,46 +144,23 @@ subtractToExcercise(id, sets, reps) {
                     <img className='exerciseImg' src={`${exercise.image_url}`} alt=""/>
                     <div className='exInfo'>
                         <h4>{exercise_name}</h4>
-                        {/* <p className>{instructions}</p> */}
-                        {/* <ToggleInput type='checkbox' value='selected'></ToggleInput>
-                        <ToggleLabel for="toggle-input">Description</ToggleLabel>
-                        <ToggleContent>
-                            <p>{instructions}</p>
-                        </ToggleContent> */}
-
-
-                        {/* <input className='toggle-input' type='checkbox' value='selected'></input> */}
-                        {/* <label className='toggle-label' for="toggle-input">Description</label> */}
                         <p>{instructions}</p>
-                        
-                        
-                        {/* {toggle ? (
-                            <div>
-                                <button key={exercise_id} onClick={() => this.setState({toggle: false})}>Signup</button>
-                            </div>
-                        ) : (
-                            <div>
-                                
-                                <button key={exercise_id} onClick={() => this.setState({toggle: true})}>Signup</button>
-                            </div>
-                        )} */}
-                        
                     </div>
                     <Wrapper>
-                        <WrapperHead>Sets</WrapperHead>
-                        <div className='countContainer'>
-                            <WrapperBtn  onClick={()=> this.subtractToExcercise(exercise_id, sets-1, reps)}><FaMinusCircle/></WrapperBtn>
-                            <WrapperSpan>{sets}</WrapperSpan>
-                            <WrapperBtn  onClick={()=> this.addToExcercise(exercise_id, sets+1, reps)}><FaPlusCircle/></WrapperBtn> 
+                        <WrapperHead className='inline padPush'>Sets</WrapperHead>
+                        <div className='countContainer inline'>
+                            <div className='WrapperBtn'  onClick={()=> this.subtractToExcercise(exercise_id, sets-1, reps)}><FaMinusCircle/></div>
+                            <WrapperSpan className='padPush2'>{sets}</WrapperSpan>
+                            <div className='WrapperBtn'  onClick={()=> this.addToExcercise(exercise_id, sets+1, reps)}><FaPlusCircle/></div> 
                         </div>
                        
                     </Wrapper>
                     <Wrapper>
-                        <WrapperHead>Reps</WrapperHead>
-                        <div className='countContainer'>
-                            <WrapperBtn  onClick={()=> this.subtractToExcercise(exercise_id, sets, reps-1)}><FaMinusCircle/></WrapperBtn>
-                            <WrapperSpan>{reps}</WrapperSpan>
-                            <WrapperBtn  onClick={()=> this.addToExcercise(exercise_id, sets, reps+1)}><FaPlusCircle/></WrapperBtn>
+                        <WrapperHead className='inline padPush'>Reps</WrapperHead>
+                        <div className='countContainer inline'>
+                            <div className='WrapperBtn' onClick={()=> this.subtractToExcercise(exercise_id, sets, reps-1)}><FaMinusCircle/></div>
+                            <WrapperSpan className='padPush2'>{reps}</WrapperSpan>
+                            <div className='WrapperBtn'  onClick={()=> this.addToExcercise(exercise_id, sets, reps+1)}><FaPlusCircle/></div>
                         </div>
                        
                     </Wrapper>

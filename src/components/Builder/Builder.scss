@@ -6,16 +6,22 @@ $gray-color: #686c70;
 $dark-gray-color: #2d3033;
 $black-color: #202529;
 
+
+h4,p {
+    margin-bottom: 10px;
+}
+
+
 .pageBg {
     background: rgb(58,161,126);
     background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%);
     margin-top: -100px;
     padding: 120px 20px 50px 20px;
     display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
     align-content: stretch;
     h3 {
         color: white;
@@ -32,58 +38,83 @@ $black-color: #202529;
 
 .exerciseContainer {
     flex-grow: 1;
-    margin-left: 30px;
+    margin-top: 20px;
 }
 
 .exerciseCard {
     padding: 20px;
     margin-bottom: 15px;
     background-color: white;
+    position: relative;
     display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch;
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .exInfo {
-    // width: 400px;
-    margin-right: 10px;
+    width: 100%;
+    margin-right: 0;
+    order: 0;
 }
 
 .exerciseImg {
-    height: 100px;
-    width: 100px;
-    margin-right: 10px;
+    height: auto;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
 }
+
 .countContainer {
+    width: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
+    justify-content: flex-start;
+    align-items: stretch;
     align-content: stretch;
-    margin-right: 10px;
+    margin: 0 10px 0 10px;
+}
+
+.countContainer:first-child {
+    margin: 0 40px 0 10px;
+}
+
+.inline {
+    display: inline-flex;
+
+}
+
+.padPush {
+    font-size: 26px;
+}
+
+.padPush2 {
+    padding-top: 5px;
+    font-size: 26;
 }
 
 .plusBtn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-right: 6px;
 }
 
 .minusBtn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-left: 6px;
 }
 
 .addExBtn {
-    order: -1;
+    order: 0;
     width: 40px;
     height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 10px;
     color: $blue-color;
     font-size: 34px;
     text-align: center;
@@ -92,7 +123,127 @@ $black-color: #202529;
     transition: all .2s ease-out;
 }
 
+.WrapperBtn {
+    font-size: 30px;
+    color: #3aa17e;
+}
+
 .addExBtn:hover {
     color: $green-color;
     transform: scale(1.1)
+}
+
+
+
+
+
+@media only screen and (min-width: 500px) {
+    .exerciseCard {
+        justify-content: flex-start;
+    }
+
+    .exInfo {
+        order: -1;
+        width: 50%;
+    }
+    
+    .exerciseImg {
+        width: 50%;
+        margin-right: 0;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width: 960px) {
+    .pageBg {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        h3 {
+            color: white;
+            margin-bottom: 6px;
+        }
+    }
+    
+    .exerciseContainer {
+        margin-left: 30px;
+    }
+    
+    .exerciseCard {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        align-items: center;
+        align-content: center;
+    }
+
+    .exInfo {
+        // width: 400px;
+        margin-right: 10px;
+        order: 0;
+    }
+    
+    .exerciseImg {
+        height: 100px;
+        width: 100px;
+        margin-right: 10px;
+    }
+
+    .countContainer {
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        margin: 0 10 0 10px;
+    }
+    
+    .inline {
+        // display: block;
+        justify-content: center;
+    }
+
+    .padPush {
+        font-size: inherit;
+    }
+
+    .padPush2 {
+        padding-top: 0;
+        font-size: 26;
+    }
+
+    .plusBtn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .minusBtn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .WrapperBtn {
+        font-size: 20px;
+    }
+    
+    .addExBtn {
+        order: -1;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: 0;
+        right: 0;
+        color: $blue-color;
+        font-size: 34px;
+        text-align: center;
+        margin: 0 10px;
+        padding-top: 3px;
+        transition: all .2s ease-out;
+    }
 }

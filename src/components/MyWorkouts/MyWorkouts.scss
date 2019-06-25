@@ -26,33 +26,64 @@ $black-color: #202529;
     margin-bottom: 15px;
     background-color: white;
     display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch;
-}
-
-.workoutName {
-
-
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
 }
 
 .workoutImg {
-    height: 100px;
-    width: 100px;
-    margin-right: 10px;
+    height: auto;
+    width: 100%;
+    margin-right: 0;
 }
 
 .workoutInfo {
-    max-width: 600px;
-    margin-right: 10px;
+    width: 100%;
+    margin-right: 0;
 }
 
 .workoutCount {
-
+    width: auto;
+    margin: 0 30px 0 0;
 }
 
-.workoutCount {
 
+
+//Tablet view
+@media only screen and (min-width: 500px) {
+    .workoutImg {
+        width: 50%;
+    }
+    
+    .workoutInfo {
+        width: 50%;
+    }
+}
+
+
+
+//Desktop View
+@media only screen and (min-width: 960px) {
+    .workoutCard {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+    
+    .workoutImg {
+        height: 100px;
+        width: 100px;
+        margin-right: 10px;
+    }
+    
+    .workoutInfo {
+        max-width: 600px;
+        margin-right: 10px;
+    }
+    
+    .workoutCount {
+        width: 200px;
+        margin: 0 10px 0 0;
+    }
 }

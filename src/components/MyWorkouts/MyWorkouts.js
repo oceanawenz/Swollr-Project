@@ -44,7 +44,7 @@ componentDidMount() {
     axios.get(`/api/builder`).then(exercises => {
         console.log(exercises);
         this.props.addExerciseList(
-            exercises.data)
+        exercises.data)
     })
 }
 

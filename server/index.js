@@ -48,8 +48,8 @@ app.use(session({
 //auth endpoints
 app.get('/api/user', userInfo);
 app.get('/api/logout', logout);
-app.post('/api/signup', register);
-app.post('/api/login', login);
+app.post('/api/home/signup', register);
+app.post('/api/home/login', login);
 
 //endpoints
 app.get("/api/builder", getAllExercises);

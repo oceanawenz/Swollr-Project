@@ -36,7 +36,7 @@ componentDidMount() {
             // console.log(res.data);
             this.props.saveUser(res.data)
         })
-    }
+}
 
 universalChangeHandler = (prop, value) => {
     this.setState({
@@ -50,7 +50,7 @@ login = () => {
     if(!email || !password) {
         return alert("PLEASE ENTER A EMAIL/PASSWORD")
     }
-    axios.post('/api/login', {email, password}).then(res => {
+    axios.post('/api/home/login', {email, password}).then(res => {
         this.props.saveUser(res.data)
     })
     if(!this.state.redirect){

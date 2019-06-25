@@ -64,7 +64,7 @@ render() {
 
         return ( <div className="listContainer">
            
-            <div> {mappedList}</div>
+            {mappedList}
             {/* <input onChange={e => this.handleChange(e.target.value)}
                 value={workoutName}
                 name="workoutName"

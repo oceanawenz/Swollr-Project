@@ -76,7 +76,7 @@ logout = () => {
                     <NavLink to='/myworkouts'>MyWorkouts</NavLink>
                 </div>
 
-                <NavLink exact to= '/home' className='logoutBtn' onClick={this.logout}>LOGOUT</NavLink>
+                <NavLink exact to= '/' className='logoutBtn' onClick={this.logout}>LOGOUT</NavLink>
 
 
                 {/* <NavLink exact to= '/home'>

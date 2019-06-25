@@ -50,7 +50,7 @@ login = () => {
     if(!email || !password) {
         return alert("PLEASE ENTER A EMAIL/PASSWORD")
     }
-    axios.post('/api/home/login', {email, password}).then(res => {
+    axios.post('/api/login', {email, password}).then(res => {
         this.props.saveUser(res.data)
     })
     if(!this.state.redirect){

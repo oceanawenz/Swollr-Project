@@ -1,46 +1,77 @@
 $blue-color: #00537e;
+$light-gray-color: #C7D4DB;
 
 .userSide {
     background: $blue-color;
-    // background-color: rgba(0,83,126,.3)
-    background-color: rgba(38,43,53,1)
+    background-color: rgba(38,43,53,1);
 }
 
 .pageLinks {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    font-size: 26px;
+    text-align: right;
+    width: 50%;
+    min-width: 300px;
+    height: 100vh;
+    padding-top: 10px;
+    top: 60px;
+    right: 0;
+    z-index: 10;
+    background-color: rgba(38,43,53,.8);
+}
+
+.show {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: center;
-    align-items: flex-end;
-    align-self: flex-end;
+
+    // animation-name: slideIn;
+    // animation-duration: 4000ms;
+    // animation-iteration-count: 1;
+    // animation-timing-function: ease-out;
+    // animation-play-state: running;
+
+    // @keyframes slideIn {
+    //     from {right: -60%;}
+    //     to {right: 0%;}
+    // }
 }
 
 .pageLinks a{
     text-decoration: none;
-    color: white;
-    margin: 5px 10px;
-    padding: 8px 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    flex-direction: row;
+    align-items: center;
 }
 
-//.logoutBtn {
-    // color: white;
-    // a:link {
-    //     text-decoration: none;
-    //   }
-      
-    //   a:visited {
-    //     text-decoration: none;
-    //   }
-      
-    //   a:hover {
-    //     text-decoration: underline;
-    //   }
-      
-    //   a:active {
-    //     text-decoration: underline;
-    //   }
-//}
 
+.pageLinks a:hover {
+    color: $light-gray-color;
+}
+
+.pageLinks a:active {
+    color: $light-gray-color;
+}
+
+
+@media only screen and (min-width: 500px) {
+    .pageLinks {
+        top: 80px;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .pageLinks {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        font-size: inherit;
+        text-align: inherit;
+        width: auto;
+        min-width: none;
+        height: auto;
+        padding-top: 0;
+        top: auto;
+        right: auto;
+        background-color: transparent;
+    }
+}

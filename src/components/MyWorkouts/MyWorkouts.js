@@ -5,6 +5,7 @@ import { connect} from 'react-redux';
 import { saveUser } from '../../dux/reducer';
 import { addUserList } from '../../dux/exerciseReducer';
 import { addExerciseList } from '../../dux/exerciseReducer';
+import {FaPlus} from 'react-icons/fa'
 import './MyWorkouts.scss';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -14,6 +15,10 @@ import axios from 'axios';
 // Create a WrapperSpan component that'll render a <span> tag with some styles
 const WrapperSpan = styled.span`
     color: #00537e;
+`;
+
+const WrapperH3 = styled.h3`
+    padding-right: 50px;
 `;
 
 class MyWorkouts extends Component {
@@ -48,6 +53,15 @@ componentDidMount() {
     })
 }
 
+// componentDidMount() {
+//     axios.get(`/api/builder`).then(exercises => {
+//         console.log(exercises);
+//         this.setState({
+//             exercises: exercises.data
+//         })
+//     })
+// }
+
 render() {
     // const {workoutName} = this.props
     console.log(this.props)
@@ -69,13 +83,13 @@ render() {
         <div>
             <UserHeader/>
             <div className='pageBg2'>
-                <h3>My Workouts</h3>
+                <WrapperH3>My Workouts</WrapperH3>
                 <NavLink to='/builder'>
-                    <button>Add New Workout</button>
+                    <div className='addWorkoutBtn'><FaPlus/></div>
                 </NavLink>
                 {/* <div>
                     <button>Text to me</button>
-                </div> */}
+                </div> */}<br></br>
                 {mappedList}
             </div>
         </div>

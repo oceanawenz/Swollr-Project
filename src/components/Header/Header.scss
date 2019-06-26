@@ -1,3 +1,12 @@
+$font-stack: 'Montserrat', sans-serif;
+$green-color: #3aa17e;
+$blue-color: #00537e;
+$light-gray-color: #C7D4DB;
+$gray-color: #686c70;
+$dark-gray-color: #2d3033;
+$black-color: #202529;
+
+
 .main-header {
     /* background: rgb(58,161,126);
     background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%); */
@@ -40,7 +49,7 @@
 
 .main-links a:hover{
     background-color: white;
-    color: #3AA17E;
+    color: $green-color;
 }
 
 

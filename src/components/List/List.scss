@@ -6,13 +6,25 @@ $gray-color: #686c70;
 $dark-gray-color: #2d3033;
 $black-color: #202529;
 
+
+%flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  %flexNoWrap{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+
+
 .listContainer {
     width: auto;
     background: white;
     padding: 20px;
-    display: flex;
+    @extend %flexWrap;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
@@ -38,9 +50,8 @@ $black-color: #202529;
 .counter{
     color: $gray-color;
     padding-top: 3px;
-    display: flex;
+    @extend %flexNoWrap;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;

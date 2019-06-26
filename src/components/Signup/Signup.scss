@@ -27,7 +27,7 @@ $black-color: #202529;
 .inputField{
    margin-bottom: 15px;
    font-size: 15px;
-   color: #686c70;
+   color: $gray-color;
 }
 
 
@@ -38,13 +38,13 @@ input{
     font-weight: 400;
     width: 100%;
     line-height: 25px;
-    color: #3aa17e;
+    color: $green-color;
     border: none;
-    border-bottom: 2px solid #eef0f2;
+    border-bottom: 2px solid $light-gray-color;
     
 }
 input::placeholder{
-    color: #686c70; 
+    color: $gray-color; 
 }
 
 .formBtn {
@@ -88,7 +88,7 @@ input::placeholder{
     left: 0px;
     margin-top: -100px;
     padding-top: 150px;
-    background: rgb(58,161,126);
+    background: $green-color;
     background: linear-gradient(193deg, rgba(58,161,126,.8) 0%, rgba(0,83,126,.8) 100%);
     }
 
@@ -131,7 +131,7 @@ input::placeholder{
         left: 0px;
         margin-top: -100px;
         padding-top: 150px;
-        background: rgb(58,161,126);
+        background: $green-color;
         background: linear-gradient(193deg, rgba(58,161,126,.8) 0%, rgba(0,83,126,.8) 100%);
         }
     }

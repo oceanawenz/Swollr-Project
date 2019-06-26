@@ -49,9 +49,9 @@ export default class Home extends Component {
                 </div>
                 <div className='container'>
                     <div className="lastContainer">
-                        <h3>TIME FOR SOME GAINZ</h3>
+                        <h3>Ready to Hit the Gym?</h3>
                         <div className="spacer ten"></div>
-                        <p>No more worrying about exercise routines</p> 
+                        <p>No more worrying about coming up with a workout plan on the fly. Swollr is designed to help you learn exercises as well as letting you customize workouts based on training needs.</p> 
                     </div>
                     <img className="final" src={swollImg} alt='main page info icon'/>
                 </div>

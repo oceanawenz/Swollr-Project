@@ -6,7 +6,7 @@ import axios from 'axios';
 import './UserHeader.scss';
 import logo from '../../media/swollr-logo.svg';
 import styled from 'styled-components';
-// import {} from 'react-icons';
+import SideBarToggle from '../Sidebar/SideBarToggle';
 
 
 // Create a WrappedLogo component that'll render a <NavLink> tag with some styles
@@ -52,7 +52,13 @@ const invokedConnect = connect(
 
 
 class UserHeader extends Component {  
-
+    constructor(props){
+    super(props)
+        this.state = {
+            toggle: false
+        }
+}
+    
 logout = () => {
     axios.get('/api/logout').then(res => {
         console.log("user logged out");
@@ -62,41 +68,30 @@ logout = () => {
     })
 }
     
+toggleSideBar = () => {
+    this.setState((prevState) => {
+        return {
+            toggle: !prevState.toggle
+        }
+    })
+}
 
     render() {
+        const {toggle} =  this.state
         return (
         <header className="main-header userSide">
                 <WrapperLogo>
                     <img className="main-logo" src={logo} alt='main logo'/>
                     <WrapperH4>Sw<WrapperSpan>ollr</WrapperSpan></WrapperH4>
                 </WrapperLogo>
+                <div onClick={this.toggleSideBar}><SideBarToggle/></div>
 
-                <div  className="pageLinks">
+                <div  className={toggle ? 'pageLinks show' : 'pageLinks'}>
                     <NavLink to='/builder'>Builder</NavLink>
                     <NavLink to='/myworkouts'>MyWorkouts</NavLink>
+                    <NavLink exact to= '/' className='logoutBtn' onClick={this.logout}>LOGOUT</NavLink>
                 </div>
 
-                <NavLink exact to= '/' className='logoutBtn' onClick={this.logout}>LOGOUT</NavLink>
-
-
-                {/* <NavLink exact to= '/home'>
-                    <div className='logoutBtn' onClick={this.logout}>LOGOUT</div>
-                </NavLink> */}
-
-                {/* <ul className="main-links">
-                    <li>
-                        <NavLink to='/builder'>Builder</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/myworkouts'>MyWorkouts</NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to= '/home'>
-                            <div className='logoutBtn' onClick={this.logout}>LOGOUT</div>
-                            <button onClick={this.logout}>Logout</button>
-                        </NavLink>
-                    </li>  
-                </ul> */}
         </header>
         )
     }   

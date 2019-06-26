@@ -6,6 +6,16 @@ $gray-color: #686c70;
 $dark-gray-color: #2d3033;
 $black-color: #202529;
 
+// This CSS extends the flex layout style with no wrap
+%flexWrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  %flexNoWrap{
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
 h4,p {
     margin-bottom: 10px;
@@ -13,13 +23,12 @@ h4,p {
 
 
 .pageBg {
-    background: rgb(58,161,126);
+    background: $green-color;
     background: linear-gradient(193deg, rgba(58,161,126,1) 0%, rgba(0,83,126,1) 100%);
     margin-top: -100px;
     padding: 120px 20px 50px 20px;
-    display: flex;
+    @extend %flexNoWrap;
     flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
@@ -46,9 +55,8 @@ h4,p {
     margin-bottom: 15px;
     background-color: white;
     position: relative;
-    display: flex;
+    @extend %flexWrap;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
     align-content: flex-start;
@@ -69,9 +77,8 @@ h4,p {
 
 .countContainer {
     width: 100px;
-    display: flex;
+    @extend %flexNoWrap;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
@@ -96,16 +103,10 @@ h4,p {
     font-size: 26;
 }
 
-.plusBtn {
+.plusBtn, .minusBtn {
     width: 40px;
     height: 40px;
     margin-right: 6px;
-}
-
-.minusBtn {
-    width: 40px;
-    height: 40px;
-    margin-left: 6px;
 }
 
 .addExBtn {
@@ -125,7 +126,7 @@ h4,p {
 
 .WrapperBtn {
     font-size: 30px;
-    color: #3aa17e;
+    color: $green-color;
 }
 
 .addExBtn:hover {
@@ -217,13 +218,8 @@ h4,p {
         padding-top: 0;
         font-size: 26;
     }
-
-    .plusBtn {
-        width: 30px;
-        height: 30px;
-    }
     
-    .minusBtn {
+    .minusBtn, .plusBtn {
         width: 30px;
         height: 30px;
     }
